@@ -23,7 +23,7 @@ Brayden Flaig: I'm a senior at EMU studying computer science and SAG. I am 21 ye
 	I have been coding since I was 18 year old in high school
 
 Fentry Martin: I’m a Second Bachelor’s student at EMU majoring in Computer Science. 
-	My first degree was a Bachelor’s in Art. I’ve been coding for about 5 years and I plan on graduation at the end of the Fall 2021 semester.
+	My first degree was a Bachelor’s in Art. I’ve been coding for about 5 years and I plan on graduating at the end of the Fall 2021 semester.
 
 Janelle Gonzalez: A Computer Science Major at Eastern Michigan University. She is 33 years old and originally from Texas. She started out as a hairstylist prior to University. 
 	Building her own website for her hair care services led her to pursue her CompSci degree. She will be graduating in Fall 2021.

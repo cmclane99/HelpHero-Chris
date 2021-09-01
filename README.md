@@ -1,5 +1,7 @@
 # The Thriving 5
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
 ## Project summary
 
 A mobile app which will aim to help those suffering from a mental health crisis and will hopefully help to prevent a suicide. 
@@ -12,8 +14,10 @@ A user database should have the option to create an account to schedule free rem
 Their account should also allow them to enter an emergency contact; A friend or family member who they can call/text. 
 The app would also recommend calling their emergency contact as well as hotlines. 
 A possible feature of this to be implemented could be the option for a user to send a predefined text or notification to their emergency contact.
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
-##Bio's
+
+## Bio's
 
 Brayden Flaig: I'm a senior at EMU studying computer science and SAG. I am 21 years old and plan on graduating hopefully in 2023. 
 	I have been coding since I was 18 year old in high school

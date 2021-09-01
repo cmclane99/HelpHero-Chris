@@ -1,6 +1,8 @@
-1. The Thriving 5
+# The Thriving 5
 ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
-2. Project summary: A mobile app which will aim to help those suffering from a mental health crisis and will hopefully help to prevent a suicide. 
+## Project summary
+
+A mobile app which will aim to help those suffering from a mental health crisis and will hopefully help to prevent a suicide. 
 The app would provide information to licensed counselors, 24/7 hotlines, and emergency services. 
 There would also be a feature showing nearby events supporting suicide prevention, links to donate to mental health causes, and ways someone can help. 
 There would be a database for licensed professionals who are willing to volunteer their time for remote meetings with someone in immediate distress. 
@@ -11,7 +13,9 @@ Their account should also allow them to enter an emergency contact; A friend or 
 The app would also recommend calling their emergency contact as well as hotlines. 
 A possible feature of this to be implemented could be the option for a user to send a predefined text or notification to their emergency contact.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
-3. Brayden Flaig: I'm a senior at EMU studying computer science and SAG. I am 21 years old and plan on graduating hopefully in 2023. 
+##Bio's
+
+Brayden Flaig: I'm a senior at EMU studying computer science and SAG. I am 21 years old and plan on graduating hopefully in 2023. 
 	I have been coding since I was 18 year old in high school
 Fentry Martin:I’m a Second Bachelor’s student at EMU majoring in Computer Science. 
 	My first degree was a Bachelor’s in Art. I’ve been coding for about 5 years and I plan on graduation at the end of the Fall 2021 semester.

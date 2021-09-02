@@ -3,6 +3,7 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
 ## Project summary
+### Help Hero
 
 A mobile app which will aim to help those suffering from a mental health crisis and will hopefully help to prevent a suicide. 
 The app would provide information to licensed counselors, 24/7 hotlines, and emergency services. 

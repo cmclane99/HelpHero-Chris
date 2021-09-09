@@ -35,4 +35,23 @@ Stephen O'Keefa: I am a 25 year old student at Eastern Michigan University. I am
 Christopher Mclane: I am an undergraduate student at Eastern Michigan Universiy majoring in Computer Science and plan to graduate in the Winter 2022 semester. 
 	My hobbies include playing video games and golfing.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+##Commit Message Guidlines
+- When commiting use the "git commit -m "Subject" -m "Description..."
+	- subject beign a few word despirtion like the subject of an email
+	- Description should be a breif sentence or two descirbing what the commit did or changed.
+- If the commit message isnt enoough information contact the person who made the commit directly for more information
+- Only commit if you know it's working
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------- 
+##Pull Request Guidelines
+
+- Before you merge with the main have at least one other group member review it to make sure it works.
+- Make sure to label with appropirate tags.
+- In the comments have a breif description of what documents are being merged to main and any changes that will be made. 
+- If there is a conflict when merging, it needs to be done with atleast most of the group present i.e. weekly group meets or an specifically arranged time 
+
+
 

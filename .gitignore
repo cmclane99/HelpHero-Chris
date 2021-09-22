@@ -335,3 +335,5 @@ Thumbs.db
 *.war
 *.ear
 
+# ssh folder
+.ssh/

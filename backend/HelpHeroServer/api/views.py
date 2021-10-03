@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response 
 from .serializers import UserSerializer
+from rest_framework import status
 
 from .models import User
 
@@ -27,16 +28,25 @@ def listUsers(request):
 
 @api_view(['GET'])
 def findUser(request, pk):
-    users = User.objects.get(id=pk)
+    users = User.objects.get(username=pk)
     serializer = UserSerializer(users, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def createUser(request):
-    serializer = UserSerializer(data=request.data)
-    print(serializer.is_valid())  
-    if serializer.is_valid():
-        print("1")
-        serializer.save()
+    serializer = UserSerializer(data=request.data) 
 
-    return Response(serializer.data)
+    if serializer.is_valid():
+        new_username = serializer.validated_data['username']
+
+        try:
+            User.objects.get(username=new_username)
+        except User.DoesNotExist:
+            # User was created
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    # Username already exists   
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+

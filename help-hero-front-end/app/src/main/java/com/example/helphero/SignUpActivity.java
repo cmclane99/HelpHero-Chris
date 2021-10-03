@@ -2,6 +2,7 @@ package com.example.helphero;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
                 // If there are errors display error in the errorMessageTextView
 
                 // If no errors redirect to the homepage
+                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
             }
         });
 

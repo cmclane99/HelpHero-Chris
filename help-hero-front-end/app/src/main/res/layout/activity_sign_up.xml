@@ -94,9 +94,9 @@
         android:layout_alignStart="@+id/username"
         android:layout_alignEnd="@id/username"
         android:layout_marginTop="10dp"
+        android:text=""
         android:textAlignment="center"
-        android:textColor="#FF0000"
-        android:text="" />
+        android:textColor="#FF0000" />
 
     <Button
         android:id="@+id/finishButton"

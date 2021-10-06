@@ -52,7 +52,6 @@ public class SignUpActivity extends AppCompatActivity {
                             contactRelationship == null)
                         errorMessageTextView.setText("Please fill out all fields");
                     }
-                }
 
                 // If no errors redirect to the homepage
                 startActivity(new Intent(SignUpActivity.this, HomeActivity.class));

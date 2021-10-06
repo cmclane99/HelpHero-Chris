@@ -41,9 +41,18 @@ public class SignUpActivity extends AppCompatActivity {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Check for input errors when when button is clicked
+                // Check for input errors when button is clicked
+                if (finishButton.addActionListener(this)) {
 
-                // If there are errors display error in the errorMessageTextView
+                    // If there are errors display error in the errorMessageTextView
+                    if (username == null ||
+                            password == null ||
+                            contactName == null ||
+                            contactNumber == null ||
+                            contactRelationship == null)
+                        errorMessageTextView.setText("Please fill out all fields");
+                    }
+                }
 
                 // If no errors redirect to the homepage
                 startActivity(new Intent(SignUpActivity.this, HomeActivity.class));

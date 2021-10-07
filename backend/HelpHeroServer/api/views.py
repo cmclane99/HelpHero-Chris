@@ -38,7 +38,7 @@ def createUser(request):
 
     if serializer.is_valid():
         new_username = serializer.validated_data['username']
-
+        #serializer.validated_data['username'] = 'Sample6'
         try:
             User.objects.get(username=new_username)
         except User.DoesNotExist:

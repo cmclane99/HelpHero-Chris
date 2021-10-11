@@ -53,6 +53,17 @@ public class SignUpActivity extends AppCompatActivity {
                         errorMessageTextView.setText("Please fill out all fields");
                     }
 
+                // Check to make sure password is within limits
+                if (password.length() <= 8 || password.length() > 15)
+                    errorMessageTextView.setText("Password must be at least 8 characters and less than 15");
+
+                // Check to make sure password contains a number special character
+                Pattern pattern = Pattern.compile("[a-zA-Z0-9\\-#\\.\\(\\)\\/%&\\s]");
+                Matcher matcher = pattern.matcher(password);
+                boolean pwContainsSpecialCharacter = matcher.find();
+                if(!pwContainsSpecialCharacter)
+                    errorMessageTextView.setText("Password must contain a number or special character - # . ( ) / % & s]");
+
                 // If no errors redirect to the homepage
                 startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
             }

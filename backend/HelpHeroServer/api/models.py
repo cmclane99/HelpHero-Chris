@@ -15,14 +15,14 @@ class User (models.Model):
     EmergencyContactPhoneOne = models.CharField(max_length=10)
 
     #user's second emergency contact info
-    EmergencyContactNameTwo = models.CharField(max_length=20)
-    EmergencyContactRelationTwo = models.CharField(max_length=20)
-    EmergencyContactPhoneTwo = models.CharField(max_length=10)
+    EmergencyContactNameTwo = models.CharField(default = '', max_length=20)
+    EmergencyContactRelationTwo = models.CharField(default = '', max_length=20)
+    EmergencyContactPhoneTwo = models.CharField(default = '', max_length=10)
 
     #user's third emergency contact info
-    EmergencyContactNameThree = models.CharField(max_length=20)
-    EmergencyContactRelationThree = models.CharField(max_length=20)
-    EmergencyContactPhoneThree = models.CharField(max_length=10)
+    EmergencyContactNameThree = models.CharField(default = '', max_length=20)
+    EmergencyContactRelationThree = models.CharField(default = '', max_length=20)
+    EmergencyContactPhoneThree = models.CharField(default = '', max_length=10)
 
     def __str__(self):
         return self.username

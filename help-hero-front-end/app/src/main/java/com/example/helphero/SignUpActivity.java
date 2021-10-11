@@ -77,12 +77,6 @@ public class SignUpActivity extends AppCompatActivity {
                             user.put("EmergencyContactNameOne",contactName);
                             user.put("EmergencyContactRelationOne",contactRelationship);
                             user.put("EmergencyContactPhoneOne", contactNumber);
-                            user.put("EmergencyContactNameTwo","x");
-                            user.put("EmergencyContactRelationTwo","x");
-                            user.put("EmergencyContactPhoneTwo", "x");
-                            user.put("EmergencyContactNameThree","x");
-                            user.put("EmergencyContactRelationThree","x");
-                            user.put("EmergencyContactPhoneThree", "x");
                         }catch(JSONException e){
                             Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_SHORT).show();
                         }

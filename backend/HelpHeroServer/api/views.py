@@ -5,6 +5,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response 
 from .serializers import UserSerializer
 from rest_framework import status
+from cryptography.fernet import Fernet
+
+from django.contrib.auth.hashers import check_password
 
 from .models import User
 
@@ -34,19 +37,28 @@ def findUser(request, pk):
 
 @api_view(['POST'])
 def createUser(request):
+    key = Fernet.generate_key()
+    crypter = Fernet(key)
+
     serializer = UserSerializer(data=request.data) 
 
+    # If JSON data is vaild, extract username and password
     if serializer.is_valid():
         new_username = serializer.validated_data['username']
-        #serializer.validated_data['username'] = 'Sample6'
+        new_password = serializer.validated_data['password']
+
         try:
             User.objects.get(username=new_username)
         except User.DoesNotExist:
-            # User was created
+            # Encrypt password and store in database
+            encrypt_pw = crypter.encrypt(new_password.encode('utf_8'))
+            serializer.validated_data['CrytKey'] = encrypt_pw
+
+            # Save new user to database
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    # Username already exists   
+    # Username already exists, so throw error message
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
 

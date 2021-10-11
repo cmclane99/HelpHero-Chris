@@ -22,6 +22,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     @Override
@@ -54,16 +57,37 @@ public class SignUpActivity extends AppCompatActivity {
                 String contactRelationship = contactRelationshipEditText.getText().toString();
 
                 // Check for input errors when button is clicked
+                boolean isValid = true;
 
                     // If there are errors display error in the errorMessageTextView
                     if (username == null ||
                             password == null ||
                             contactName == null ||
                             contactNumber == null ||
-                            contactRelationship == null)
+                            contactRelationship == null) {
+                        isValid = false;
                         errorMessageTextView.setText("Please fill out all fields");
+                    }
 
-                    else
+                // Check to make sure password is within limits
+                if (password.length() <= 8 || password.length() > 15) {
+                    isValid = true;
+                }
+                else
+                    errorMessageTextView.setText("Password must be at least 8 characters and less than 15");
+
+
+                // Check to make sure password contains a number special character
+                //Pattern pattern = Pattern.compile("[a-zA-Z0-9\\-#\\.\\(\\)\\/%&\\s]");
+                Pattern pattern = Pattern.compile("[\\-#\\.\\*\\&\\%\\#\\$\\(\\)\\/%&\\s]");
+                Matcher matcher = pattern.matcher(password);
+                boolean pwContainsSpecialCharacter = matcher.find();
+                if(!pwContainsSpecialCharacter) {
+                    isValid = false;
+                    errorMessageTextView.setText("Password must contain a number or special character - # . ( ) / % & s]");
+                }
+
+                    if(isValid ==true)
                     {
                         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
                         String url = "http://54.86.66.229:8000/api/create-user/";
@@ -73,7 +97,6 @@ public class SignUpActivity extends AppCompatActivity {
                         try{
                             user.put("username", username);
                             user.put("password",password);
-                            user.put("CrytKey", "x");
                             user.put("EmergencyContactNameOne",contactName);
                             user.put("EmergencyContactRelationOne",contactRelationship);
                             user.put("EmergencyContactPhoneOne", contactNumber);
@@ -99,19 +122,7 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                     }
 
-                // Check to make sure password is within limits
-                if (password.length() <= 8 || password.length() > 15)
-                    errorMessageTextView.setText("Password must be at least 8 characters and less than 15");
 
-                // Check to make sure password contains a number special character
-                Pattern pattern = Pattern.compile("[a-zA-Z0-9\\-#\\.\\(\\)\\/%&\\s]");
-                Matcher matcher = pattern.matcher(password);
-                boolean pwContainsSpecialCharacter = matcher.find();
-                if(!pwContainsSpecialCharacter)
-                    errorMessageTextView.setText("Password must contain a number or special character - # . ( ) / % & s]");
-
-                // If no errors redirect to the homepage
-                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
             }
         });
 

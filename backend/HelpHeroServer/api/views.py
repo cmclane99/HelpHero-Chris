@@ -5,9 +5,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response 
 from .serializers import UserSerializer
 from rest_framework import status
-from cryptography.fernet import Fernet
+from passlib.hash import pbkdf2_sha256
 
-from django.contrib.auth.hashers import check_password
+# from django.contrib.auth.hashers import check_password
 
 from .models import User
 
@@ -37,8 +37,6 @@ def findUser(request, pk):
 
 @api_view(['POST'])
 def createUser(request):
-    key = Fernet.generate_key()
-    crypter = Fernet(key)
 
     serializer = UserSerializer(data=request.data) 
 
@@ -51,8 +49,10 @@ def createUser(request):
             User.objects.get(username=new_username)
         except User.DoesNotExist:
             # Encrypt password and store in database
-            encrypt_pw = crypter.encrypt(new_password.encode('utf_8'))
-            serializer.validated_data['CrytKey'] = encrypt_pw
+            # Rounds = hashing strength (default = 5,000)
+            # Salt = randomized seed 
+            encrypt_pw = pbkdf2_sha256.encrypt(new_password, rounds=12000, salt_size=32)
+            serializer.validated_data['password'] = encrypt_pw
 
             # Save new user to database
             serializer.save()
@@ -60,5 +60,6 @@ def createUser(request):
 
     # Username already exists, so throw error message
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
+   
 

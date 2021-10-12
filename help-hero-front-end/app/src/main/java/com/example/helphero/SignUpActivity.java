@@ -121,8 +121,6 @@ public class SignUpActivity extends AppCompatActivity {
                         // If no errors redirect to the homepage
                         startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                     }
-
-
             }
         });
 

@@ -1,4 +1,5 @@
 from django.db import models
+from passlib.hash import pbkdf2_sha256
 
 class User (models.Model):
 
@@ -7,7 +8,6 @@ class User (models.Model):
 
     #user's password, will; eventually be encryoted
     password = models.CharField(max_length=20)
-    CrytKey = models.CharField(max_length=200)
 
     #user's first emergency contact info
     EmergencyContactNameOne = models.CharField(max_length=20)
@@ -23,6 +23,10 @@ class User (models.Model):
     EmergencyContactNameThree = models.CharField(default = '', max_length=20)
     EmergencyContactRelationThree = models.CharField(default = '', max_length=20)
     EmergencyContactPhoneThree = models.CharField(default = '', max_length=10)
+
+    # Compare raw password against encrypted password
+    def verify_password(self, raw_password):
+        return pbkdf2_sha256.verify(raw_password, self.password)
 
     def __str__(self):
         return self.username

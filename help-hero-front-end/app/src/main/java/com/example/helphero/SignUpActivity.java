@@ -3,6 +3,7 @@ package com.example.helphero;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,9 +17,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +29,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    SharedPreferences s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,72 +61,91 @@ public class SignUpActivity extends AppCompatActivity {
                 String contactNumber = contactNumberEditText.getText().toString();
                 String contactRelationship = contactRelationshipEditText.getText().toString();
 
-                // Check for input errors when button is clicked
-                boolean isValid = true;
-
-                    // If there are errors display error in the errorMessageTextView
-                    if (username == null ||
-                            password == null ||
-                            contactName == null ||
-                            contactNumber == null ||
-                            contactRelationship == null) {
-                        isValid = false;
-                        errorMessageTextView.setText("Please fill out all fields");
-                    }
-
-                // Check to make sure password is within limits
-                if (password.length() < 8 || password.length() >= 15) {
-                    errorMessageTextView.setText("Password must be at least 8 characters and less than 15");
-                }
-                else
-                    isValid = true;
-
-
                 // Check to make sure password contains a number special character
                 //Pattern pattern = Pattern.compile("[a-zA-Z0-9\\-#\\.\\(\\)\\/%&\\s]");
                 Pattern pattern = Pattern.compile("[\\-#\\.\\*\\&\\%\\#\\$\\(\\)\\/%&\\s]");
                 Matcher matcher = pattern.matcher(password);
                 boolean pwContainsSpecialCharacter = matcher.find();
-                if(!pwContainsSpecialCharacter) {
-                    isValid = false;
-                    errorMessageTextView.setText("Password must contain a number or special character - # . ( ) / % & s]");
-                }
 
-                    if(isValid ==true)
-                    {
-                        RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-                        String url = "http://54.86.66.229:8000/api/create-user/";
 
-                        JSONObject user = new JSONObject();
+                // Set up request queue and request the list of users
+                RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+                String urlUserList = "http://54.86.66.229:8000/api/user-list/";
 
-                        try{
-                            user.put("username", username);
-                            user.put("password",password);
-                            user.put("EmergencyContactNameOne",contactName);
-                            user.put("EmergencyContactRelationOne",contactRelationship);
-                            user.put("EmergencyContactPhoneOne", contactNumber);
-                        }catch(JSONException e){
-                            Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_SHORT).show();
+                JsonArrayRequest requestUserList = new JsonArrayRequest(Request.Method.GET, urlUserList, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // Loop through the Json array to see if the username would be a duplicate
+                        for (int i = 0 ; i < response.length(); i++) {
+                            JSONObject obj = null;
+                            try {
+                                obj = response.getJSONObject(i);
+                                String u = obj.getString("username");
+                                if(username.equals(u))
+                                {
+                                    errorMessageTextView.setText("That username is already taken.");
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
-
-                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, user, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                // No errors, proceed to home page
-                                // Toast.makeText(SignUpActivity.this, "Success!", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // Error, username already exists in database
-                                Toast.makeText(SignUpActivity.this, "Username is already taken!", Toast.LENGTH_LONG).show();
-
-                            }
-                        });
-                        queue.add(request);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(SignUpActivity.this, "Something went wrong.",Toast.LENGTH_LONG).show();
 
                     }
+                });
+                queue.add(requestUserList);
+
+
+                // If there are errors display error in the errorMessageTextView
+                if (username.equals("") || password.equals("") || contactName.equals("") ||
+                        contactNumber.equals("") || contactRelationship.equals(""))
+                    errorMessageTextView.setText("Please fill out all fields");
+
+                    // Check to make sure password is within limits
+                else if (password.length() < 8 || password.length() > 15)
+                    errorMessageTextView.setText("Password must be at least 8 characters and less than 15");
+
+                else if(!pwContainsSpecialCharacter)
+                    errorMessageTextView.setText("Password must contain a number or special character - # . ( ) / % & s]");
+
+                else
+                {
+                    //RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+                    String url = "http://54.86.66.229:8000/api/create-user/";
+
+                    JSONObject user = new JSONObject();
+
+                    try{
+                        user.put("username", username);
+                        user.put("password",password);
+                        user.put("EmergencyContactNameOne",contactName);
+                        user.put("EmergencyContactRelationOne",contactRelationship);
+                        user.put("EmergencyContactPhoneOne", contactNumber);
+                    }catch(JSONException e){
+                        Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_SHORT).show();
+                    }
+
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, user, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // If no errors redirect to the homepage
+                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SignUpActivity.this, "Something went wrong.",Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                    queue.add(request);
+                }
 
 
             }
@@ -129,4 +153,5 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
 }

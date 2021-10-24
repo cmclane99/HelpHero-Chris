@@ -43,14 +43,17 @@ public class SignInActivity extends AppCompatActivity {
 
                 //create request queue and source
                 RequestQueue queue = Volley.newRequestQueue(SignInActivity.this);
-                String url = "http://54.86.66.229:8000/api/create-user/";
+                String url = "http://54.86.66.229:8000/api/user-list/";
 
                 //take user input
                 String userInput = usernameEditText.getText().toString();
+                Toast.makeText(SignInActivity.this, userInput, Toast.LENGTH_SHORT).show();
 
                 //if user input is empty, do nothing
-                if (userInput == "")
+                if (userInput.isEmpty()) {
+                    Toast.makeText(SignInActivity.this, "Please input a username", Toast.LENGTH_SHORT).show();
                     return;
+                }
 
                 //take password input
                 String passInput = passwordEditText.getText().toString();
@@ -73,13 +76,13 @@ public class SignInActivity extends AppCompatActivity {
                                         searchName = searchObject.getString("username");
 
                                         //if username found in database
-                                        if (searchName == userInput) {
+                                        if (searchName.equals(userInput)) {
 
                                             //retreive corresponding password
                                             searchPass = searchObject.getString("password");
 
                                             //check password's correctness
-                                            if (searchPass == passInput)
+                                            if (searchPass.equals(passInput))
                                                 //proceed to Home Page
                                                 startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                                             else
@@ -94,6 +97,8 @@ public class SignInActivity extends AppCompatActivity {
                                         return;
                                     }
                                 }
+
+                                Toast.makeText(SignInActivity.this, "Username not found!", Toast.LENGTH_SHORT).show();
                             }
                         },
                         new Response.ErrorListener() {
@@ -103,6 +108,8 @@ public class SignInActivity extends AppCompatActivity {
                             }
                         }
                 );
+
+                queue.add(listRequest);
             }
         });
 

@@ -1,6 +1,7 @@
 package com.example.helphero;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -37,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
         Button homeButton = (Button)findViewById(R.id.HomeButton);
         Button sosButton = (Button)findViewById(R.id.SOSButton);
         Button profileButton = (Button)findViewById(R.id.ProfileButton);
+
+        homeButton.setBackgroundColor(Color.CYAN);
+        homeButton.setTextColor(Color.BLACK);
 
         resourceButton.setOnClickListener(new View.OnClickListener() {
             @Override

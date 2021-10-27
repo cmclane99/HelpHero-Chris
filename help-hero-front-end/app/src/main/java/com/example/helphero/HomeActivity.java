@@ -1,5 +1,6 @@
 package com.example.helphero;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -36,6 +37,30 @@ public class HomeActivity extends AppCompatActivity {
         Button homeButton = (Button)findViewById(R.id.HomeButton);
         Button sosButton = (Button)findViewById(R.id.SOSButton);
         Button profileButton = (Button)findViewById(R.id.ProfileButton);
+
+        resourceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(HomeActivity.this, ResourceActivity.class));
+            }
+        });
+
+        sosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(HomeActivity.this, SOS_Activity.class));
+            }
+        });
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

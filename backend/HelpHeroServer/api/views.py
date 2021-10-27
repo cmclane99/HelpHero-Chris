@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response 
@@ -20,6 +20,7 @@ def apiOverview(request):
         'User_list' : '/user-list/',
         'Create_User': '/create-user/',
         'Get_User' : '/user-detail/<str:pk>/',
+        'User_login': '/login/',
     }
     return Response(api_urls)
 
@@ -60,6 +61,30 @@ def createUser(request):
 
     # Username already exists, so throw error message
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def loginUser(request):
+
+    # Store username and password entered by user
+    entered_username = request.data.get('username')
+    entered_password = request.data.get('password')
+
+    # Check if user exists in database
+    try :
+        User.objects.get(username=entered_username)
+    except User.DoesNotExist:
+        return Response({'message': "Invalid username, try again"}, status=status.HTTP_401_UNAUTHORIZED)
+
+    # Verify password by calling verify_password in models.py
+    user = User.objects.get(username=entered_username)
+    verify = user.verify_password(entered_password)
+
+    # If true, return Response object containing message field set to True
+    if verify:
+        return Response({'message': True}, status=status.HTTP_200_OK) 
+
+    # Else, return Response object containing error message
+    return Response({'message': "Invalid credentials, try again"}, status=status.HTTP_401_UNAUTHORIZED)
 
    
 

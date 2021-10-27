@@ -51,8 +51,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginBottom="0dp"
 
-        android:text="Resources"
-        />
+        android:text="Resources" />
 
     <Button
         android:id="@+id/HomeButton"
@@ -63,7 +62,7 @@
         android:layout_alignParentLeft="@+id/ResourcesButton"
         android:layout_alignParentBottom="true"
 
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginBottom="0dp"
         android:layout_toRightOf="@+id/ResourcesButton"
 
@@ -77,12 +76,15 @@
         android:layout_height="wrap_content"
 
         android:layout_alignParentLeft="@+id/HomeButton"
+        android:layout_alignParentRight="@+id/ProfileButton"
         android:layout_alignParentBottom="true"
 
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_marginBottom="0dp"
 
         android:layout_toRightOf="@id/HomeButton"
+        android:layout_toLeftOf="@id/ProfileButton"
 
         android:text="SOS"
         />
@@ -96,11 +98,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
 
-        android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_toRightOf="@+id/SOSButton"
+        android:layout_marginBottom="0dp"
 
-        android:text="Profile"
-        />
+        android:text="Profile" />
 
 </RelativeLayout>

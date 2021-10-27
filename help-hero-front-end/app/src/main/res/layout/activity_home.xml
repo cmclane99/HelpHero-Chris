@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <TextView
-        android:id="@+id/temp_welcome"
-
-        android:layout_width="196dp"
-        android:layout_height="56dp"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="334dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginBottom="341dp"
-
-        android:text="Welcome to the Home Page!"
-        android:textAlignment="center" />
-
     <Button
         android:id="@+id/ResourcesButton"
 
@@ -86,7 +67,21 @@
         android:layout_marginRight="0dp"
         android:layout_toRightOf="@+id/SOSButton"
 
-        android:text="Profile"
-        />
+        android:text="Profile" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="245dp"
+        android:layout_height="84dp"
+        android:layout_above="@+id/ProfileButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="DailyAffirmations"
+        android:visibility="visible" />
 
 </RelativeLayout>

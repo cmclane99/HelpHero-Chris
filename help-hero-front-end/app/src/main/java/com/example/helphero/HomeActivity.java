@@ -27,12 +27,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        TextView tempWelcome = (TextView)findViewById(R.id.temp_welcome);
-
         Button resourceButton = (Button)findViewById(R.id.ResourcesButton);
         Button homeButton = (Button)findViewById(R.id.HomeButton);
         Button sosButton = (Button)findViewById(R.id.SOSButton);
         Button profileButton = (Button)findViewById(R.id.ProfileButton);
+
+        TextView DailyAffirmations = (TextView)findViewById(R.id.DailyAffirmations);
+
     }
 
     @Override

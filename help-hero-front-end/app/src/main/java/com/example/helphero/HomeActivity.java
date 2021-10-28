@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -21,15 +23,26 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.helphero.databinding.ActivityHomeBinding;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityHomeBinding binding;
+    private ListView selfCareListView;
+    private ArrayAdapter<String> adapter;
+    private String [] listItems = {"Item 1","Item 2","Item 3","Item 4","Item 5","Item 6",
+                                    "Item 7", "Item 8", "Item 9", "Item 10"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        selfCareListView = findViewById(R.id.selfCareListView);
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_multiple_choice,listItems);
+        selfCareListView.setAdapter(adapter);
 
         Button resourceButton = (Button) findViewById(R.id.ResourcesButton);
         Button homeButton = (Button) findViewById(R.id.HomeButton);

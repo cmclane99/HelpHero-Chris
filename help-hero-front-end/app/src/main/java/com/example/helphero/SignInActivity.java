@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -15,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -36,6 +38,9 @@ public class SignInActivity extends AppCompatActivity {
         Button signInButton = (Button)findViewById(R.id.buttonSignIn);
         Button signUpButton = (Button)findViewById(R.id.buttonSignUp);
 
+        // Create TextView object for errorMessage
+        TextView errorMessageTextView = (TextView)findViewById(R.id.errorMessage);
+
         //create onClick method for signIn button
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,73 +48,83 @@ public class SignInActivity extends AppCompatActivity {
 
                 //create request queue and source
                 RequestQueue queue = Volley.newRequestQueue(SignInActivity.this);
-                String url = "http://54.86.66.229:8000/api/user-list/";
 
                 //take user input
                 String userInput = usernameEditText.getText().toString();
-                Toast.makeText(SignInActivity.this, userInput, Toast.LENGTH_SHORT).show();
 
                 //if user input is empty, do nothing
                 if (userInput.isEmpty()) {
                     Toast.makeText(SignInActivity.this, "Please input a username", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                else {
+                    Toast.makeText(SignInActivity.this, userInput, Toast.LENGTH_SHORT).show();
+                }
 
                 //take password input
                 String passInput = passwordEditText.getText().toString();
 
-                //find matching username in database
-                JsonArrayRequest listRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                        new Response.Listener<JSONArray>() {
+                // If there are errors display error in the errorMessageTextView
+                if (userInput.equals("") || passInput.equals(""))
+                    errorMessageTextView.setText("Please fill out all fields");
+                else
+                {
+                    //RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+                    String loginURL = "http://54.86.66.229:8000/api/login/";
 
-                            @Override
-                            public void onResponse(JSONArray response) {
-                                //instantiate database value holders
-                                String searchName;
-                                String searchPass;
+                    JSONObject user = new JSONObject();
 
-                                for(int i = 0; i < response.length(); i++) {
+                    try{
+                        user.put("username", userInput);
+                        user.put("password",passInput);
+                    }catch(JSONException e){
+                        Toast.makeText(SignInActivity.this, "ERROR",Toast.LENGTH_SHORT).show();
+                    }
 
-                                    try {
-                                        //obtain username from next JSONObject
-                                        JSONObject searchObject = response.getJSONObject(i);
-                                        searchName = searchObject.getString("username");
+                    JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, loginURL, user, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            //instantiate database value holders
+                            String searchName;
+                            boolean verifyPass;
 
-                                        //if username found in database
-                                        if (searchName.equals(userInput)) {
+                            try {
+                                //obtain username from next JSONObject
+                                searchName = response.getString("username");
 
-                                            //retreive corresponding password
-                                            searchPass = searchObject.getString("password");
+                                //if username found in database
+                                if (searchName.equals(userInput)) {
 
-                                            //check password's correctness
-                                            if (searchPass.equals(passInput))
-                                                //proceed to Home Page
-                                                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                                            else
-                                                //notify user of failure
-                                                Toast.makeText(SignInActivity.this, "Password does not match username!", Toast.LENGTH_SHORT).show();
+                                    //retreive corresponding password
+                                    verifyPass = response.getBoolean("password_verified");
 
-                                            //end loop
-                                            return;
-                                        }
-                                    } catch (JSONException e) {  //catch missing object error
-                                        Toast.makeText(SignInActivity.this, "No name found!", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
+                                    //check password's correctness
+                                    if (verifyPass)
+                                        //proceed to Home Page
+                                        startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                                    else
+                                        //notify user of failure
+                                        Toast.makeText(SignInActivity.this, "Invalid Password!", Toast.LENGTH_SHORT).show();
+
+                                    //end loop
+                                    return;
                                 }
+                            } catch (JSONException e) {  //catch missing object error
+                                Toast.makeText(SignInActivity.this, "No name found!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
 
-                                Toast.makeText(SignInActivity.this, "Username not found!", Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(SignInActivity.this, "Error happened!", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(SignInActivity.this, "Username not found!", Toast.LENGTH_SHORT).show();
                         }
-                );
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SignInActivity.this, error.getMessage(),Toast.LENGTH_LONG).show();
 
-                queue.add(listRequest);
+                        }
+                    });
+                    queue.add(request);
+                }
             }
         });
 

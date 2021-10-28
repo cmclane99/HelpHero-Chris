@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private ListView selfCareListView;
     private ArrayAdapter<String> adapter;
-    private String [] listItems = {"item1", "item2","item3","item4","item5" };
+    private String [] listItems = {"Empty task", "Empty task","Empty task","Empty task","Empty task" };
     int listCount = 0;
 
     @Override
@@ -59,12 +59,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(listCount < 5){
-                    listItems[listCount] = newTask.getText().toString();
+                if(listCount < 5) {
+                        listItems[listCount] = newTask.getText().toString();
 
-                    adapter.notifyDataSetChanged();
-                    selfCareListView.setItemChecked(listCount,false);
-                    listCount++;
+                        adapter.notifyDataSetChanged();
+                        selfCareListView.setItemChecked(listCount,false);
+                        listCount++;
+
                 }else {
                     Toast.makeText(HomeActivity.this, "CheckList full, Adding a new task will remove Top item", Toast.LENGTH_SHORT).show();
                     listCount = 0;

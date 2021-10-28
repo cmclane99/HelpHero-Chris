@@ -1,17 +1,13 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, LoginSerializer
 from rest_framework import status
 from passlib.hash import pbkdf2_sha256
-
-# from django.contrib.auth.hashers import check_password
-
 from .models import User
 
-# Create your views here.
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -20,6 +16,7 @@ def apiOverview(request):
         'User_list' : '/user-list/',
         'Create_User': '/create-user/',
         'Get_User' : '/user-detail/<str:pk>/',
+        'User_login': '/login/',
     }
     return Response(api_urls)
 
@@ -61,5 +58,34 @@ def createUser(request):
     # Username already exists, so throw error message
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def loginUser(request):
+
+    # Data from user is temporarily stored in UserLogin table 
+    loginSerializer = LoginSerializer(data=request.data)
+
+    if loginSerializer.is_valid():
+        # Store username and password entered by user
+        entered_username = loginSerializer.validated_data['username']
+        entered_password = loginSerializer.validated_data['password']
+
+        # Check if user exists in database
+        try :
+            User.objects.get(username=entered_username)
+        except User.DoesNotExist:
+            return Response(loginSerializer.data)
+
+        # Verify password by calling verify_password in models.py
+        user = User.objects.get(username=entered_username)
+        verify = user.verify_password(entered_password)
+
+        # If true, set 'password_verified' field to true and return serialized data 
+        if verify:
+            loginSerializer.validated_data['password_verified'] = True
+            return Response(loginSerializer.data) 
+
+    # Else, set 'password_verified' field to false and return serialized data 
+    loginSerializer.validated_data['password_verified'] = False
+    return Response(loginSerializer.data)
    
 

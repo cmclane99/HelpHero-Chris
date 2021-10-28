@@ -49,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Create button object to handle the onClick
         Button finishButton = (Button)findViewById(R.id.finishButton);
+        Button backButton = (Button)findViewById(R.id.backButton);
 
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +149,13 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
             }
         });
 

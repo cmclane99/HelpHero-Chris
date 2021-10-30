@@ -11,8 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -22,31 +26,68 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.helphero.databinding.ActivityHomeBinding;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityHomeBinding binding;
+    private ListView selfCareListView;
+    private ArrayAdapter<String> adapter;
+    private String [] listItems = {"Empty task", "Empty task","Empty task","Empty task","Empty task" };
+    int listCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        TextView tempWelcome = (TextView)findViewById(R.id.temp_welcome);
+        selfCareListView = findViewById(R.id.selfCareListView);
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_multiple_choice,listItems);
+        selfCareListView.setAdapter(adapter);
 
-        Button resourceButton = (Button)findViewById(R.id.ResourcesButton);
-        Button homeButton = (Button)findViewById(R.id.HomeButton);
-        Button sosButton = (Button)findViewById(R.id.SOSButton);
-        Button profileButton = (Button)findViewById(R.id.ProfileButton);
+        Button resourceButton = (Button) findViewById(R.id.ResourcesButton);
+        Button editCheckListButton = (Button) findViewById(R.id.editCheckListButton);
+        Button homeButton = (Button) findViewById(R.id.HomeButton);
+        Button sosButton = (Button) findViewById(R.id.SOSButton);
+        Button profileButton = (Button) findViewById(R.id.ProfileButton);
+        EditText newTask = (EditText) findViewById(R.id.newTask);
 
         homeButton.setEnabled(false);
         homeButton.setBackgroundColor(Color.CYAN);
         homeButton.setTextColor(Color.BLACK);
 
         resourceButton.setOnClickListener(new View.OnClickListener() {
+
+        TextView DailyAffirmations = (TextView) findViewById(R.id.DailyAffirmations);
+
+        editCheckListButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
+                if(listCount < 5) {
+                        listItems[listCount] = newTask.getText().toString();
+
+                        adapter.notifyDataSetChanged();
+                        selfCareListView.setItemChecked(listCount,false);
+                        listCount++;
+
+                }else {
+                    Toast.makeText(HomeActivity.this, "CheckList full, Adding a new task will remove Top item", Toast.LENGTH_SHORT).show();
+                    listCount = 0;
+
+                }
+
+            }
+        });
+
+
+        resourceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //takes user to the resources page
                 startActivity(new Intent(HomeActivity.this, ResourceActivity.class));
             }
         });
@@ -54,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         sosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //takes user to the SOS page
                 startActivity(new Intent(HomeActivity.this, SOS_Activity.class));
             }
         });
@@ -62,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //takes user to the Profile page
                 startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             }
         });
@@ -86,10 +127,11 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
             return true;
-        }
-        else if(id == R.id.action_logout)
-        {
-            return true;
+        } else if (id == R.id.action_logout) {
+            //sends the user back to the sign in page when log out is selected
+            //any saved variables will need to be cleared at this step however
+            //there is none currently
+            startActivity(new Intent(HomeActivity.this, SignInActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -101,4 +143,5 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }

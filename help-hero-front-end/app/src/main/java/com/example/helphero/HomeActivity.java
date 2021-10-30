@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         Button sosButton = (Button)findViewById(R.id.SOSButton);
         Button profileButton = (Button)findViewById(R.id.ProfileButton);
 
+        homeButton.setEnabled(false);
         homeButton.setBackgroundColor(Color.CYAN);
         homeButton.setTextColor(Color.BLACK);
 

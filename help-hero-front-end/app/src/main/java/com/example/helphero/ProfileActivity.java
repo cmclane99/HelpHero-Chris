@@ -1,5 +1,7 @@
 package com.example.helphero;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -7,7 +9,10 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,23 +28,45 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
 
-        binding = ActivityProfileBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        TextView tempWelcome = (TextView)findViewById(R.id.temp_welcome);
 
-        setSupportActionBar(binding.toolbar);
+        Button resourceButton = (Button)findViewById(R.id.ResourcesButton);
+        Button homeButton = (Button)findViewById(R.id.HomeButton);
+        Button sosButton = (Button)findViewById(R.id.SOSButton);
+        Button profileButton = (Button)findViewById(R.id.ProfileButton);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_profile);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        profileButton.setEnabled(false);
+        profileButton.setBackgroundColor(Color.CYAN);
+        profileButton.setTextColor(Color.BLACK);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        resourceButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+
+                startActivity(new Intent(ProfileActivity.this, ResourceActivity.class));
             }
         });
+
+        sosButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ProfileActivity.this, SOS_Activity.class));
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
+            }
+        });
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override

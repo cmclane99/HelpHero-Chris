@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/ResourcesButton"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp"
+
+        android:text="Resources" />
+
+    <Button
+        android:id="@+id/HomeButton"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="@+id/ResourcesButton"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toRightOf="@+id/ResourcesButton"
+
+        android:text="Home"
+        />
+
+    <Button
+        android:id="@+id/SOSButton"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="@+id/HomeButton"
+        android:layout_alignParentRight="@+id/ProfileButton"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="0dp"
+
+        android:layout_toRightOf="@id/HomeButton"
+        android:layout_toLeftOf="@id/ProfileButton"
+
+        android:text="SOS"
+        />
+
+    <Button
+        android:id="@+id/ProfileButton"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+
+        android:text="Profile" />
+
+</RelativeLayout>

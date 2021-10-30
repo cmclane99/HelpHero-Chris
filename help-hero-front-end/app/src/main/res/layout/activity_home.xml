@@ -37,6 +37,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+    <include layout="@layout/bottom_button_row"/>
+
+    <TextView
+        android:id="@+id/temp_welcome"
+
+        android:layout_width="196dp"
+        android:layout_height="56dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="334dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginBottom="341dp"
+
+        android:text="Welcome to the Home Page!"
+        android:textAlignment="center" />
+  
     <Button
         android:id="@+id/ResourcesButton"
 
@@ -150,6 +172,5 @@
         android:text="Edit Checklist"
         android:textColor="@color/black"
         android:textSize="10sp" />
-
 
 </RelativeLayout>

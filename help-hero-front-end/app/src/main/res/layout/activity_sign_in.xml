@@ -38,8 +38,8 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Username"
-        android:inputType="text"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textViewPassword"

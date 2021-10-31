@@ -57,16 +57,13 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this, "Please input a username", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else {
-                    Toast.makeText(SignInActivity.this, userInput, Toast.LENGTH_SHORT).show();
-                }
 
                 //take password input
                 String passInput = passwordEditText.getText().toString();
 
                 // If there are errors display error in the errorMessageTextView
-                if (userInput.equals("") || passInput.equals(""))
-                    errorMessageTextView.setText("Please fill out all fields");
+                if (passInput.isEmpty())
+                    Toast.makeText(SignInActivity.this, "Please input a password", Toast.LENGTH_SHORT).show();
                 else
                 {
                     //RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
@@ -110,11 +107,10 @@ public class SignInActivity extends AppCompatActivity {
                                     return;
                                 }
                             } catch (JSONException e) {  //catch missing object error
-                                Toast.makeText(SignInActivity.this, "No name found!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this, "Username not found!", Toast.LENGTH_SHORT).show();
                                 return;
                             }
 
-                            Toast.makeText(SignInActivity.this, "Username not found!", Toast.LENGTH_SHORT).show();
                         }
                     }, new Response.ErrorListener() {
                         @Override

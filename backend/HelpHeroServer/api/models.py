@@ -1,5 +1,6 @@
 from django.db import models
 from passlib.hash import pbkdf2_sha256
+from django.utils import timezone
 
 class User (models.Model):
 
@@ -10,19 +11,19 @@ class User (models.Model):
     password = models.CharField(max_length=20)
 
     #user's first emergency contact info
-    #EmergencyContactNameOne = models.CharField(max_length=20)
-    #EmergencyContactRelationOne = models.CharField(max_length=20)
-    #EmergencyContactPhoneOne = models.CharField(max_length=10)
+    EmergencyContactNameOne = models.CharField(max_length=20)
+    EmergencyContactRelationOne = models.CharField(max_length=20)
+    EmergencyContactPhoneOne = models.CharField(max_length=10)
 
     #user's second emergency contact info
-    #EmergencyContactNameTwo = models.CharField(default = '', max_length=20)
-    #EmergencyContactRelationTwo = models.CharField(default = '', max_length=20)
-    #EmergencyContactPhoneTwo = models.CharField(default = '', max_length=10)
+    EmergencyContactNameTwo = models.CharField(default = '', max_length=20)
+    EmergencyContactRelationTwo = models.CharField(default = '', max_length=20)
+    EmergencyContactPhoneTwo = models.CharField(default = '', max_length=10)
 
     #user's third emergency contact info
-    #EmergencyContactNameThree = models.CharField(default = '', max_length=20)
-    #EmergencyContactRelationThree = models.CharField(default = '', max_length=20)
-    #EmergencyContactPhoneThree = models.CharField(default = '', max_length=10)
+    EmergencyContactNameThree = models.CharField(default = '', max_length=20)
+    EmergencyContactRelationThree = models.CharField(default = '', max_length=20)
+    EmergencyContactPhoneThree = models.CharField(default = '', max_length=10)
 
     # Compare raw password against encrypted password
     def verify_password(self, raw_password):
@@ -40,8 +41,17 @@ class UserLogin (models.Model):
     def __str__(self):
         return self.username # name to be shown when called
 
+class TaskList (models.Model):
 
-    
+    description = models.CharField(max_length=20) # a text field
+    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # date field
+    task_creator = models.ForeignKey(User, on_delete=models.CASCADE) # foreign key that links created tasks to a user (many-to-one)
+
+    class Meta:
+        ordering = ["-created"] # order tasks by date created 
+
+    def __str__(self):
+        return self.description # field to be shown when called
     
     
 

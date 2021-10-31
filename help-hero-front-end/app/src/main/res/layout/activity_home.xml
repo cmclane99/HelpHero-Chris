@@ -58,82 +58,19 @@
 
         android:text="Welcome to the Home Page!"
         android:textAlignment="center" />
-  
-    <Button
-        android:id="@+id/ResourcesButton"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginLeft="0dp"
-        android:layout_marginBottom="0dp"
-
-        android:text="Resources"
-        />
-
-    <Button
-        android:id="@+id/HomeButton"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentLeft="@+id/ResourcesButton"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginLeft="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_toRightOf="@+id/ResourcesButton"
-
-        android:text="Home"
-        />
-
-    <Button
-        android:id="@+id/SOSButton"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentLeft="@+id/HomeButton"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginLeft="0dp"
-        android:layout_marginBottom="0dp"
-
-        android:layout_toRightOf="@id/HomeButton"
-
-        android:text="SOS"
-        />
-
-    <Button
-        android:id="@+id/ProfileButton"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_toRightOf="@+id/SOSButton"
-
-        android:text="Profile" />
 
     <TextView
         android:id="@+id/DailyAffirmations"
         android:layout_width="245dp"
         android:layout_height="84dp"
-        android:layout_above="@+id/ProfileButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="44dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="55dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="49dp"
         android:text="DailyAffirmations"
         android:visibility="visible" />
 

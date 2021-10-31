@@ -58,8 +58,6 @@ public class HomeActivity extends AppCompatActivity {
         homeButton.setBackgroundColor(Color.CYAN);
         homeButton.setTextColor(Color.BLACK);
 
-        resourceButton.setOnClickListener(new View.OnClickListener() {
-
         TextView DailyAffirmations = (TextView) findViewById(R.id.DailyAffirmations);
 
         editCheckListButton.setOnClickListener(new View.OnClickListener() {

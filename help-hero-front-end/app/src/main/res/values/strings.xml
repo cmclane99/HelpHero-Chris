@@ -14,6 +14,20 @@
     <string name="title_activity_sos">SOS_Activity</string>
 
     <string name="messageWithLink">
-        <a href="https://afsp.org/suicide-prevention-resources">American Foundation for Suicide Prevention</a>
+        <a href="https://afsp.org/suicide-prevention-resources">American Foundation for Suicide Prevention</a>\n
+        <a href="https://www.samhsa.gov/childrens-awareness-day/past-events/2019/resources-suicide-prevention">Substance Abuse and Mental Health Services Administration</a>\n
+        <a href="https://www.nimh.nih.gov/health/topics/suicide-prevention">National Institute of Mental Health</a>\n
+        <a href="https://www.healthline.com/health/mental-health/suicide-resource-guide">Healthline</a>\n
+        <a href="https://suicidepreventionlifeline.org/">Suicide Prevention Lifeline</a>\n
+        <a href="https://www.nami.org/get-involved/awareness-events/suicide-prevention-awareness-month">National Alliance on Mental Illness</a>\n
+        <a href="https://www.cdc.gov/suicide/resources/index.html">Center for Disease Control</a>\n
+        <a href="https://sptsusa.org/">Society for the Prevention of Teen Suicide</a>\n
+        <a href="https://theactionalliance.org/resource-library">National Action Alliance for Suicide Prevention</a>\n
+        <a href="https://www.sprc.org/">Suicide Prevention Resource Center</a>\n
+        <a href="https://www.crisistextline.org/">Crisis Text Line</a>\n
+        <a href="https://www.bethe1to.com/">#BeThe1To</a>\n
+        <a href="https://save.org/">Suicide Awareness Voices of Education</a>\n
+        <a href="https://www.thetrevorproject.org/">The Trevor Project</a>\n
+        <a href="https://zerosuicide.edc.org/resources">Zero Suicide</a>
     </string>
 </resources>

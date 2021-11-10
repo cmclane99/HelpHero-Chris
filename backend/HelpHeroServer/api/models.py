@@ -11,19 +11,19 @@ class User (models.Model):
     password = models.CharField(max_length=20)
 
     #user's first emergency contact info
-    EmergencyContactNameOne = models.CharField(max_length=20)
-    EmergencyContactRelationOne = models.CharField(max_length=20)
-    EmergencyContactPhoneOne = models.CharField(max_length=10)
+    EmergencyContactNameOne = models.CharField(max_length=20, blank=True)
+    EmergencyContactRelationOne = models.CharField(max_length=20, blank=True)
+    EmergencyContactPhoneOne = models.CharField(max_length=10, blank=True)
 
     #user's second emergency contact info
-    EmergencyContactNameTwo = models.CharField(default = '', max_length=20)
-    EmergencyContactRelationTwo = models.CharField(default = '', max_length=20)
-    EmergencyContactPhoneTwo = models.CharField(default = '', max_length=10)
+    EmergencyContactNameTwo = models.CharField(default = '', max_length=20, blank=True)
+    EmergencyContactRelationTwo = models.CharField(default = '', max_length=20, blank=True)
+    EmergencyContactPhoneTwo = models.CharField(default = '', max_length=10, blank=True)
 
     #user's third emergency contact info
-    EmergencyContactNameThree = models.CharField(default = '', max_length=20)
-    EmergencyContactRelationThree = models.CharField(default = '', max_length=20)
-    EmergencyContactPhoneThree = models.CharField(default = '', max_length=10)
+    EmergencyContactNameThree = models.CharField(default = '', max_length=20, blank=True)
+    EmergencyContactRelationThree = models.CharField(default = '', max_length=20, blank=True)
+    EmergencyContactPhoneThree = models.CharField(default = '', max_length=10, blank=True)
 
     # Compare raw password against encrypted password
     def verify_password(self, raw_password):

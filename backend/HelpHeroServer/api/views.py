@@ -3,10 +3,10 @@ from django.http import JsonResponse, HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response 
-from .serializers import UserSerializer, LoginSerializer
+from .serializers import UserSerializer, LoginSerializer, UpdateUserSerializer
 from rest_framework import status
 from passlib.hash import pbkdf2_sha256
-from .models import User
+from .models import User, UserLogin
 
 
 @api_view(['GET'])
@@ -17,6 +17,8 @@ def apiOverview(request):
         'Create_User': '/create-user/',
         'Get_User' : '/user-detail/<str:pk>/',
         'User_login': '/login/',
+
+        'Edit_contacts': '/edit-contacts/<str:pk>/'
         'Delete_User':'delete-user/<str:pk>',
         "Change_Username":'change-username/<str:pk>',
     }
@@ -73,12 +75,11 @@ def loginUser(request):
 
         # Check if user exists in database
         try :
-            User.objects.get(username=entered_username)
+            user = User.objects.get(username=entered_username)
         except User.DoesNotExist:
             return Response(loginSerializer.data)
 
         # Verify password by calling verify_password in models.py
-        user = User.objects.get(username=entered_username)
         verify = user.verify_password(entered_password)
 
         # If true, set 'password_verified' field to true and return serialized data 
@@ -88,14 +89,28 @@ def loginUser(request):
 
     # Else, set 'password_verified' field to false and return serialized data 
     loginSerializer.validated_data['password_verified'] = False
+
     return Response(loginSerializer.data) 
+@api_view(['PUT'])
+def updateContacts(request, pk):
+    
+    try:
+        user = User.objects.get(username=pk)
+    except User.DoesNotExist:
+        return Response({'message: User does not exist'})
+    
+    user_serializer = UpdateUserSerializer(user, data=request.data)
+
+    if user_serializer.is_valid():
+        user_serializer.save()
+        return Response(user_serializer.data)
+    return Response(user_serializer.errors)
 
 @api_view(['POST'])
 def DeleteUser(request, pk):
      user = User.objects.get(username=pk)
      user.delete()
      return Response("Item Successfully Deleted!")
-
 
 @api_view(['POST'])
 def ChangeUsername(request, pk):
@@ -127,4 +142,3 @@ def ChangeUsername(request, pk):
     return Response(serializer2.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-       

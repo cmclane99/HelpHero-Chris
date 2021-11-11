@@ -41,18 +41,7 @@ class UserLogin (models.Model):
     def __str__(self):
         return self.username # name to be shown when called
 
-class TaskList (models.Model):
 
-    description = models.CharField(max_length=20) # a text field
-    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # date field
-    task_creator = models.ForeignKey(User, on_delete=models.CASCADE) # foreign key that links created tasks to a user (many-to-one)
-
-    class Meta:
-        ordering = ["-created"] # order tasks by date created 
-
-    def __str__(self):
-        return self.description # field to be shown when called
-    
     
 
     

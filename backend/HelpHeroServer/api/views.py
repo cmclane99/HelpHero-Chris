@@ -17,6 +17,7 @@ def apiOverview(request):
         'Create_User': '/create-user/',
         'Get_User' : '/user-detail/<str:pk>/',
         'User_login': '/login/',
+        'Delete_User':'delete-user/<str:pk>',
     }
     return Response(api_urls)
 
@@ -87,5 +88,12 @@ def loginUser(request):
     # Else, set 'password_verified' field to false and return serialized data 
     loginSerializer.validated_data['password_verified'] = False
     return Response(loginSerializer.data)
+
+
+@api_view(['POST'])
+def DeleteUser(request, pk):
+     user = User.objects.get(username=pk)
+     user.delete()
+     return Response("Item Successfully Deleted!")
    
 

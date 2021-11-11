@@ -40,10 +40,4 @@ class UserLogin (models.Model):
 
     def __str__(self):
         return self.username # name to be shown when called
-
-
-    
-
-    
-
     

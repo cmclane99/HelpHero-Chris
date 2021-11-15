@@ -42,8 +42,3 @@ class UserLogin (models.Model):
         return self.username # name to be shown when called
 
     
-    
-
-    
-
-    

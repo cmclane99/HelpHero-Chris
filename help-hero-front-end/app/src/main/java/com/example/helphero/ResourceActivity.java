@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,7 +31,8 @@ public class ResourceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resource);
 
-        TextView tempWelcome = (TextView)findViewById(R.id.temp_welcome);
+        TextView linkDisplay = (TextView)findViewById(R.id.ResourceList);
+        linkDisplay.setMovementMethod(LinkMovementMethod.getInstance());
 
         Button resourceButton = (Button)findViewById(R.id.ResourcesButton);
         Button homeButton = (Button)findViewById(R.id.HomeButton);

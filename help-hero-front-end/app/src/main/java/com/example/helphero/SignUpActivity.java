@@ -2,6 +2,7 @@ package com.example.helphero;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,12 +31,17 @@ import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    SharedPreferences s;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        // Prepare to save username for session
+        String PREFERENCES = "MyPrefs";
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
 
         // Create EditText objects to grab all the input fields
         EditText usernameEditText = (EditText)findViewById(R.id.username);
@@ -135,6 +141,9 @@ public class SignUpActivity extends AppCompatActivity {
                     JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, user, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            editor.putString("username", username);
+                            editor.putString("password",password);
+                            editor.apply();
                             // If no errors redirect to the homepage
                             startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                         }

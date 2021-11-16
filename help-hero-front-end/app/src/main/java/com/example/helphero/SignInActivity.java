@@ -2,7 +2,9 @@ package com.example.helphero;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -25,10 +27,17 @@ import org.json.JSONObject;
 
 public class SignInActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        // Prepare to save username for session
+        String PREFERENCES = "MyPrefs";
+        SharedPreferences sharedpreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
 
         // Edit text objects for username and password boxes
         EditText usernameEditText = (EditText)findViewById(R.id.username);
@@ -96,9 +105,13 @@ public class SignInActivity extends AppCompatActivity {
                                     verifyPass = response.getBoolean("password_verified");
 
                                     //check password's correctness
-                                    if (verifyPass)
-                                        //proceed to Home Page
+                                    if (verifyPass) {
+                                        //proceed to Home Page and save username for session
+                                        editor.putString("username", userInput);
+                                        editor.putString("password",passInput);
+                                        editor.apply();
                                         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                                    }
                                     else
                                         //notify user of failure
                                         Toast.makeText(SignInActivity.this, "Invalid Password!", Toast.LENGTH_SHORT).show();

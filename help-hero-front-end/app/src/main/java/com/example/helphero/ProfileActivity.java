@@ -48,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityProfileBinding binding;
-    private String username = "delete-user-test2";
+    private String username = "bob123";
     private  RequestQueue queue;
 
     @Override
@@ -196,6 +196,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setEditButton(editButton1,confirmButton1,contactName1,contactRelation1,
                                 contactNumber1);
+                checkBox1.setEnabled(false);
 
             }
         });
@@ -206,6 +207,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setEditButton(editButton2,confirmButton2,contactName2,contactRelation2,
                                 contactNumber2);
+                checkBox2.setEnabled(false);
             }
         });
 
@@ -215,6 +217,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setEditButton(editButton3,confirmButton3,contactName3,contactRelation3,
                                 contactNumber3);
+                checkBox3.setEnabled(false);
             }
         });
 
@@ -297,11 +300,23 @@ public class ProfileActivity extends AppCompatActivity {
                     deleteError.setText("");
                     //delete data from backend
                     if(checkBox1.isChecked())
-                        deleteContact(1);
+                    {
+                        deleteContact(1, contactName1, contactRelation1, contactNumber1, editButton1);
+                        checkBox1.setChecked(false);
+                        checkBox1.setEnabled(false);
+                    }
                     if(checkBox2.isChecked())
-                        deleteContact(2);
+                    {
+                        deleteContact(2, contactName2, contactRelation2, contactNumber2, editButton2);
+                        checkBox2.setChecked(false);
+                        checkBox2.setEnabled(false);
+                    }
                     if(checkBox3.isChecked())
-                        deleteContact(3);
+                    {
+                        deleteContact(3, contactName3, contactRelation3, contactNumber3, editButton3);
+                        checkBox3.setChecked(false);
+                        checkBox3.setEnabled(false);
+                    }
                 }
             }
         });
@@ -379,28 +394,28 @@ public class ProfileActivity extends AppCompatActivity {
         else
         {
             //send changes to backend
-            String urlEditContacts = "http://54.86.66.229:8000/api/edit-contacts/"+username;
+            String urlEditContacts = "http://54.86.66.229:8000/api/edit-contacts/"+username+"/";
 
             JSONObject user = new JSONObject();
 
             try{
                 if(contact==1)
                 {
-                    user.put("EmergencyContactNameOne", contactName);
-                    user.put("EmergencyContactRelationOne", contactRelation);
-                    user.put("EmergencyContactPhoneOne", contactNumber);
+                    user.put("EmergencyContactNameOne", contactName.getText().toString());
+                    user.put("EmergencyContactRelationOne", contactRelation.getText().toString());
+                    user.put("EmergencyContactPhoneOne", contactNumber.getText().toString());
                 }
                 else if(contact==2)
                 {
-                    user.put("EmergencyContactNameTwo", contactName);
-                    user.put("EmergencyContactRelationTwo", contactRelation);
-                    user.put("EmergencyContactPhoneTwo", contactNumber);
+                    user.put("EmergencyContactNameTwo", contactName.getText().toString());
+                    user.put("EmergencyContactRelationTwo", contactRelation.getText().toString());
+                    user.put("EmergencyContactPhoneTwo", contactNumber.getText().toString());
                 }
                 else if(contact==3)
                 {
-                    user.put("EmergencyContactNameThree", contactName);
-                    user.put("EmergencyContactRelationThree", contactRelation);
-                    user.put("EmergencyContactPhoneThree", contactNumber);
+                    user.put("EmergencyContactNameThree", contactName.getText().toString());
+                    user.put("EmergencyContactRelationThree", contactRelation.getText().toString());
+                    user.put("EmergencyContactPhoneThree", contactNumber.getText().toString());
                 }
 
             }catch(JSONException e){
@@ -408,7 +423,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             JsonObjectRequest requestUpdateContacts = new JsonObjectRequest(Request.Method.PUT,
-                    urlEditContacts, null, new Response.Listener<JSONObject>() {
+                    urlEditContacts, user, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
 
@@ -443,9 +458,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     //method to delete contact from database
-    public void deleteContact(int contact)
+    public void deleteContact(int contact,EditText contactName, EditText contactRelation,
+                              EditText contactNumber,Button editButton)
     {
-        String urlDeleteContact = "http://54.86.66.229:8000/api/edit-contacts/"+username;
+        String urlDeleteContact = "http://54.86.66.229:8000/api/edit-contacts/"+username+"/";
 
         JSONObject user = new JSONObject();
 
@@ -474,10 +490,14 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         JsonObjectRequest requestDeleteContact = new JsonObjectRequest(Request.Method.PUT,
-                urlDeleteContact, null, new Response.Listener<JSONObject>() {
+                urlDeleteContact, user, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                contactName.setText("");
+                contactRelation.setText("");
+                contactNumber.setText("");
 
+                editButton.setText("Add Contact");
             }
         }, new Response.ErrorListener() {
             @Override

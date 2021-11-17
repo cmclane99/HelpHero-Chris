@@ -141,12 +141,13 @@ public class HomeActivity extends AppCompatActivity {
         try {
             for (int i = 0; i < intCount; i++) {
                 textData[i] = bufferedReader.readLine();
-                DailyAffirmations.setText( textData[i]);
             }
         } catch (Exception f) {
             f.printStackTrace();
         }
 
+        int random = (int)(Math.random() * intCount);
+        DailyAffirmations.setText(textData[random]);
 
     }
 

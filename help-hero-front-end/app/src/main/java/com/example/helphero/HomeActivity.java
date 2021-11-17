@@ -26,6 +26,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.helphero.databinding.ActivityHomeBinding;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -36,6 +40,9 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private String [] listItems = {"Empty task", "Empty task","Empty task","Empty task","Empty task" };
     int listCount = 0;
+    int intCount = 0;
+    int intCurrent;
+    String[] textData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,8 @@ public class HomeActivity extends AppCompatActivity {
         homeButton.setTextColor(Color.BLACK);
 
         TextView DailyAffirmations = (TextView) findViewById(R.id.DailyAffirmations);
+
+        setDailyAffirmations(DailyAffirmations);
 
         editCheckListButton.setOnClickListener(new View.OnClickListener() {
 
@@ -108,6 +117,38 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+    }
+
+    private void setDailyAffirmations(TextView DailyAffirmations) {
+        InputStream streamCountLines = this.getResources().openRawResource(R.raw.affirmations);
+        BufferedReader readerCountLines = new BufferedReader(new InputStreamReader(streamCountLines));
+
+        try {
+            while (readerCountLines.readLine() != null) {
+                intCount++;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        InputStream inputStream = this.getResources().openRawResource(R.raw.affirmations);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+        textData = new String[intCount];
+
+        try {
+            for (int i = 0; i < intCount; i++) {
+                textData[i] = bufferedReader.readLine();
+            }
+        } catch (Exception f) {
+            f.printStackTrace();
+        }
+
+        int random = (int)(Math.random() * intCount);
+        DailyAffirmations.setText(textData[random]);
+
     }
 
     @Override
@@ -141,6 +182,7 @@ public class HomeActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 
     public static rotateAffirmations() {
 

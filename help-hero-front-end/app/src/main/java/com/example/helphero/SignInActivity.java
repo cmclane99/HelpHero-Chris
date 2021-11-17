@@ -27,8 +27,6 @@ import org.json.JSONObject;
 
 public class SignInActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +107,9 @@ public class SignInActivity extends AppCompatActivity {
                                         //proceed to Home Page and save username for session
                                         editor.putString("username", userInput);
                                         editor.putString("password",passInput);
+                                        editor.putInt("affirmationIndex",0);
                                         editor.apply();
-                                        startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
                                     }
                                     else
                                         //notify user of failure

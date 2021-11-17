@@ -2,8 +2,10 @@ package com.example.helphero;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -48,13 +50,19 @@ public class ProfileActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityProfileBinding binding;
-    private String username = "delete-user-test2";
-    private  RequestQueue queue;
+    private String username;
+    private String password;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        String PREFERENCES = "MyPrefs";
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username","user");
+        password = sharedPreferences.getString("password","password");
 
         TextView tempWelcome = (TextView)findViewById(R.id.temp_welcome);
 
@@ -94,11 +102,6 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //cards
-        CardView card1 = (CardView)findViewById(R.id.card_view1);
-        CardView card2 = (CardView)findViewById(R.id.card_view2);
-        CardView card3 = (CardView)findViewById(R.id.card_view3);
-
         //edit text boxes
         EditText contactName1 = (EditText)findViewById(R.id.contact_name_one);
         EditText contactRelation1 = (EditText)findViewById(R.id.contact_relation_one);
@@ -137,6 +140,10 @@ public class ProfileActivity extends AppCompatActivity {
         TextView editError3 = (TextView)findViewById(R.id.error_edit_three);
         TextView deleteError = (TextView)findViewById(R.id.error_text_view);
 
+        //username edit text and button
+        EditText displayUsername = (EditText)findViewById(R.id.display_username);
+        Button editUsername = (Button)findViewById(R.id.edit_username);
+
         //get user's contact information
         queue = Volley.newRequestQueue(ProfileActivity.this);
         String urlUser = "http://54.86.66.229:8000/api/user-detail/"+username;
@@ -147,6 +154,8 @@ public class ProfileActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 try {
+                    displayUsername.setText(response.getString("username"));
+
                     contactName1.setText(response.getString("EmergencyContactNameOne"));
                     contactRelation1.setText(response.getString("EmergencyContactRelationOne"));
                     contactNumber1.setText(response.getString("EmergencyContactPhoneOne"));
@@ -190,12 +199,61 @@ public class ProfileActivity extends AppCompatActivity {
         });
         queue.add(requestUserInfo);
 
+        //change username button changes user name in database
+        editUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newUsername = displayUsername.getText().toString();
+
+                String urlChangeUsername = "http://54.86.66.229:8000/api/change-username/"+username;
+
+                JSONObject user = new JSONObject();
+
+                try{
+                    user.put("username",newUsername);
+                    user.put("password",password);
+                    user.put("EmergencyContactNameOne",contactName1.getText().toString());
+                    user.put("EmergencyContactRelationOne",contactRelation1.getText().toString());
+                    user.put("EmergencyContactPhoneOne",contactNumber1.getText().toString());
+                    user.put("EmergencyContactNameTwo",contactName2.getText().toString());
+                    user.put("EmergencyContactRelationTwo",contactRelation2.getText().toString());
+                    user.put("EmergencyContactPhoneTwo",contactNumber2.getText().toString());
+                    user.put("EmergencyContactNameThree",contactName3.getText().toString());
+                    user.put("EmergencyContactRelationThree",contactRelation3.getText().toString());
+                    user.put("EmergencyContactPhoneThree",contactNumber3.getText().toString());
+
+                }catch(JSONException e){
+                    Toast.makeText(ProfileActivity.this, "ERROR",Toast.LENGTH_SHORT).show();
+                }
+
+                JsonObjectRequest requestUpdateContacts = new JsonObjectRequest(Request.Method.POST,
+                        urlChangeUsername, user, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("username",newUsername);
+                        editor.apply();
+                        username = newUsername;
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProfileActivity.this,
+                                "Something went wrong.",Toast.LENGTH_LONG).show();
+
+                    }
+                });
+                queue.add(requestUpdateContacts);
+            }
+        });
+
         //when contact edit button is clicked
         editButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setEditButton(editButton1,confirmButton1,contactName1,contactRelation1,
                                 contactNumber1);
+                checkBox1.setEnabled(false);
 
             }
         });
@@ -206,6 +264,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setEditButton(editButton2,confirmButton2,contactName2,contactRelation2,
                                 contactNumber2);
+                checkBox2.setEnabled(false);
             }
         });
 
@@ -215,6 +274,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setEditButton(editButton3,confirmButton3,contactName3,contactRelation3,
                                 contactNumber3);
+                checkBox3.setEnabled(false);
             }
         });
 
@@ -297,11 +357,23 @@ public class ProfileActivity extends AppCompatActivity {
                     deleteError.setText("");
                     //delete data from backend
                     if(checkBox1.isChecked())
-                        deleteContact(1);
+                    {
+                        deleteContact(1, contactName1, contactRelation1, contactNumber1, editButton1);
+                        checkBox1.setChecked(false);
+                        checkBox1.setEnabled(false);
+                    }
                     if(checkBox2.isChecked())
-                        deleteContact(2);
+                    {
+                        deleteContact(2, contactName2, contactRelation2, contactNumber2, editButton2);
+                        checkBox2.setChecked(false);
+                        checkBox2.setEnabled(false);
+                    }
                     if(checkBox3.isChecked())
-                        deleteContact(3);
+                    {
+                        deleteContact(3, contactName3, contactRelation3, contactNumber3, editButton3);
+                        checkBox3.setChecked(false);
+                        checkBox3.setEnabled(false);
+                    }
                 }
             }
         });
@@ -379,28 +451,28 @@ public class ProfileActivity extends AppCompatActivity {
         else
         {
             //send changes to backend
-            String urlEditContacts = "http://54.86.66.229:8000/api/edit-contacts/"+username;
+            String urlEditContacts = "http://54.86.66.229:8000/api/edit-contacts/"+username+"/";
 
             JSONObject user = new JSONObject();
 
             try{
                 if(contact==1)
                 {
-                    user.put("EmergencyContactNameOne", contactName);
-                    user.put("EmergencyContactRelationOne", contactRelation);
-                    user.put("EmergencyContactPhoneOne", contactNumber);
+                    user.put("EmergencyContactNameOne", contactName.getText().toString());
+                    user.put("EmergencyContactRelationOne", contactRelation.getText().toString());
+                    user.put("EmergencyContactPhoneOne", contactNumber.getText().toString());
                 }
                 else if(contact==2)
                 {
-                    user.put("EmergencyContactNameTwo", contactName);
-                    user.put("EmergencyContactRelationTwo", contactRelation);
-                    user.put("EmergencyContactPhoneTwo", contactNumber);
+                    user.put("EmergencyContactNameTwo", contactName.getText().toString());
+                    user.put("EmergencyContactRelationTwo", contactRelation.getText().toString());
+                    user.put("EmergencyContactPhoneTwo", contactNumber.getText().toString());
                 }
                 else if(contact==3)
                 {
-                    user.put("EmergencyContactNameThree", contactName);
-                    user.put("EmergencyContactRelationThree", contactRelation);
-                    user.put("EmergencyContactPhoneThree", contactNumber);
+                    user.put("EmergencyContactNameThree", contactName.getText().toString());
+                    user.put("EmergencyContactRelationThree", contactRelation.getText().toString());
+                    user.put("EmergencyContactPhoneThree", contactNumber.getText().toString());
                 }
 
             }catch(JSONException e){
@@ -408,7 +480,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             JsonObjectRequest requestUpdateContacts = new JsonObjectRequest(Request.Method.PUT,
-                    urlEditContacts, null, new Response.Listener<JSONObject>() {
+                    urlEditContacts, user, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
 
@@ -443,9 +515,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     //method to delete contact from database
-    public void deleteContact(int contact)
+    public void deleteContact(int contact,EditText contactName, EditText contactRelation,
+                              EditText contactNumber,Button editButton)
     {
-        String urlDeleteContact = "http://54.86.66.229:8000/api/edit-contacts/"+username;
+        String urlDeleteContact = "http://54.86.66.229:8000/api/edit-contacts/"+username+"/";
 
         JSONObject user = new JSONObject();
 
@@ -474,10 +547,14 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         JsonObjectRequest requestDeleteContact = new JsonObjectRequest(Request.Method.PUT,
-                urlDeleteContact, null, new Response.Listener<JSONObject>() {
+                urlDeleteContact, user, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                contactName.setText("");
+                contactRelation.setText("");
+                contactNumber.setText("");
 
+                editButton.setText("Add Contact");
             }
         }, new Response.ErrorListener() {
             @Override

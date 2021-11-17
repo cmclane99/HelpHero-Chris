@@ -183,9 +183,4 @@ public class HomeActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-
-    public static rotateAffirmations() {
-
-    }
-
 }

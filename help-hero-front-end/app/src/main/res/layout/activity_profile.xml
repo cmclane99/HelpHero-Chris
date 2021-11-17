@@ -21,8 +21,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/bottom_button_row"/>
-  
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
@@ -30,6 +28,7 @@
         android:layout_marginTop="60dp">
         <LinearLayout
             android:id="@+id/card_linear_layout"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -385,5 +384,10 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <include
+        layout="@layout/bottom_button_row"
+        android:layout_width="match_parent"
+        android:layout_height="756dp" />
 
 </RelativeLayout>

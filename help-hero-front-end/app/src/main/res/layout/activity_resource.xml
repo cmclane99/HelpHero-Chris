@@ -20,25 +20,39 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/bottom_button_row"/>
+    <include
+        layout="@layout/bottom_button_row"
+        android:layout_width="match_parent"
+        android:layout_height="756dp" />
 
-    <TextView
-        android:id="@+id/temp_welcome"
 
-        android:layout_width="196dp"
-        android:layout_height="56dp"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarLayout"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="43dp">
 
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="334dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginBottom="341dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        android:text="Welcome to the Resources Page!"
-        android:textAlignment="center" />
+            <TextView
+                android:id="@+id/ResourceList"
+                android:layout_width="352dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="96dp"
+                android:lineSpacingExtra="12sp"
+                android:text="@string/messageWithLink"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

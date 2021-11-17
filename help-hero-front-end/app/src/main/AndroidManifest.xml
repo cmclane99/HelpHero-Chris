@@ -19,6 +19,7 @@
             android:theme="@style/Theme.HelpHero.NoActionBar" />
         <activity
             android:name=".ProfileActivity"
+            android:windowSoftInputMode="stateHidden"
             android:exported="true"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.HelpHero.NoActionBar" />
@@ -26,9 +27,10 @@
             android:name=".ResourceActivity"
             android:exported="true"
             android:label="@string/title_activity_resource"
-            android:theme="@style/Theme.HelpHero.NoActionBar" />
+            android:theme="@style/Theme.HelpHero.NoActionBar"/>
         <activity
             android:name=".HomeActivity"
+            android:windowSoftInputMode="stateHidden"
             android:exported="true"
             android:theme="@style/Theme.HelpHero.NoActionBar" />
         <activity android:name=".SignInActivity">
@@ -40,7 +42,7 @@
         </activity>
         <activity android:name=".SignUpActivity">
         </activity>
-        
+
     </application>
 
 </manifest>

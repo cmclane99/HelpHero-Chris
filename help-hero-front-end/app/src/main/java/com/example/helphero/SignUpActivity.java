@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +44,18 @@ public class SignUpActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
         // Create EditText objects to grab all the input fields
-        EditText usernameEditText = (EditText)findViewById(R.id.username);
-        EditText passwordEditText = (EditText)findViewById(R.id.password);
-        EditText contactNameEditText = (EditText)findViewById(R.id.emergencyContactName);
-        EditText contactNumberEditText = (EditText)findViewById(R.id.emergencyContactNumber);
-        EditText contactRelationshipEditText = (EditText)findViewById(R.id.emergencyContactRelationship);
+        EditText usernameEditText = (EditText) findViewById(R.id.username);
+        EditText passwordEditText = (EditText) findViewById(R.id.password);
+        EditText contactNameEditText = (EditText) findViewById(R.id.emergencyContactName);
+        EditText contactNumberEditText = (EditText) findViewById(R.id.emergencyContactNumber);
+        EditText contactRelationshipEditText = (EditText) findViewById(R.id.emergencyContactRelationship);
 
         // Create TextView object for errorMessage
-        TextView errorMessageTextView = (TextView)findViewById(R.id.errorMessage);
+        TextView errorMessageTextView = (TextView) findViewById(R.id.errorMessage);
 
         // Create button object to handle the onClick
-        Button finishButton = (Button)findViewById(R.id.finishButton);
-        Button backButton = (Button)findViewById(R.id.backButton);
+        Button finishButton = (Button) findViewById(R.id.finishButton);
+        Button backButton = (Button) findViewById(R.id.backButton);
 
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,13 +83,12 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         // Loop through the Json array to see if the username would be a duplicate
-                        for (int i = 0 ; i < response.length(); i++) {
+                        for (int i = 0; i < response.length(); i++) {
                             JSONObject obj = null;
                             try {
                                 obj = response.getJSONObject(i);
                                 String u = obj.getString("username");
-                                if(username.equals(u))
-                                {
+                                if (username.equals(u)) {
                                     errorMessageTextView.setText("That username is already taken.");
                                 }
 
@@ -102,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SignUpActivity.this, "Something went wrong.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, "Something went wrong.", Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -118,39 +117,39 @@ public class SignUpActivity extends AppCompatActivity {
                 else if (password.length() < 8 || password.length() > 15)
                     errorMessageTextView.setText("Password must be at least 8 characters and less than 15");
 
-                else if(!pwContainsSpecialCharacter)
+                else if (!pwContainsSpecialCharacter)
                     errorMessageTextView.setText("Password must contain a number or special character - # . ( ) / % & s]");
 
-                else
-                {
+                else {
                     //RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
                     String url = "http://54.86.66.229:8000/api/create-user/";
 
                     JSONObject user = new JSONObject();
 
-                    try{
+                    try {
                         user.put("username", username);
-                        user.put("password",password);
-                        user.put("EmergencyContactNameOne",contactName);
-                        user.put("EmergencyContactRelationOne",contactRelationship);
+                        user.put("password", password);
+                        user.put("EmergencyContactNameOne", contactName);
+                        user.put("EmergencyContactRelationOne", contactRelationship);
                         user.put("EmergencyContactPhoneOne", contactNumber);
-                    }catch(JSONException e){
-                        Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Toast.makeText(SignUpActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                     }
 
                     JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, user, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            // If no errors redirect to the homepage
                             editor.putString("username", username);
                             editor.putString("password",password);
+                            editor.putInt("affirmationIndex",0);
                             editor.apply();
-                            // If no errors redirect to the homepage
-                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(SignUpActivity.this, "Something went wrong.",Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this, "Something went wrong.", Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -164,7 +163,7 @@ public class SignUpActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this,SignInActivity.class));
+                startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
             }
         });
 

@@ -43,17 +43,16 @@
 
     <TextView
         android:id="@+id/DailyAffirmations"
-        android:layout_width="245dp"
-        android:layout_height="84dp"
+        android:layout_width="245sp"
+        android:layout_height="84sp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginBottom="49dp"
-        android:text="DailyAffirmations"
+        android:layout_marginStart="50sp"
+        android:layout_marginLeft="44sp"
+        android:layout_marginEnd="50sp"
+        android:layout_marginRight="55sp"
+        android:layout_marginBottom="49sp"
         android:visibility="visible" />
 
     <TextView

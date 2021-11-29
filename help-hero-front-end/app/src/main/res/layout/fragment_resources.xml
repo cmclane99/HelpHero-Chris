@@ -26,19 +26,95 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/ResourceList"
-                android:layout_width="352dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="56dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="96dp"
-                android:lineSpacingExtra="12sp"
-                android:text="@string/messageWithLink"
-                android:textSize="20sp" />
+            <CheckBox
+                android:id="@+id/check1"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check2"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check3"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check4"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check5"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check6"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check7"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check8"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check9"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check10"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check11"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check12"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check13"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check14"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
+
+            <CheckBox
+                android:id="@+id/check15"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                />
 
         </LinearLayout>
     </ScrollView>

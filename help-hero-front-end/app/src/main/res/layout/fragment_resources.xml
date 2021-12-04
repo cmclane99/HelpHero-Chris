@@ -14,107 +14,101 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <Button
+        android:id="@+id/saveFav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save Favorites" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/saveFav"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="43dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <CheckBox
                 android:id="@+id/check1"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check2"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check3"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check4"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check5"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check6"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check7"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check8"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check9"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check10"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check11"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check12"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check13"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check14"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <CheckBox
                 android:id="@+id/check15"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>

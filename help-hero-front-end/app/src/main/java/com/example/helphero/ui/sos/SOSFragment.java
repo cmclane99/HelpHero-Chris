@@ -118,7 +118,25 @@ public class SOSFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:7343663622"));
+                intent.setData(Uri.parse("tel:"+contactNumber1.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
+        call2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+contactNumber2.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
+        call3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+contactNumber3.getText().toString()));
                 startActivity(intent);
             }
         });

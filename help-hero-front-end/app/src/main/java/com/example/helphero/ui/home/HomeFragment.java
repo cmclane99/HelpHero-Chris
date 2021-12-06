@@ -23,14 +23,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.helphero.Database;
 import com.example.helphero.MainActivity;
 import com.example.helphero.R;
 import com.example.helphero.TaskModel;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -77,7 +85,7 @@ public class HomeFragment extends Fragment {
         setDailyAffirmations(DailyAffirmations);
 
         database = new Database(getActivity());
-        taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll());
+        taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll(username));
         selfCareListView.setAdapter(taskArrayAdapter);
 
         editCheckListButton.setOnClickListener(new View.OnClickListener() {
@@ -85,18 +93,16 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 TaskModel taskModel = new TaskModel();
 
+                // Add task to database
                 taskModel.setTaskTitle(newTask.getText().toString());
-                Toast.makeText(getActivity(), taskModel.toString(), Toast.LENGTH_SHORT).show();
+                taskModel.setTaskCreator(username);
                 database.addOne(taskModel);
 
-
-                taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll());
+                // Display updated task list
+                taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll(username));
                 selfCareListView.setAdapter(taskArrayAdapter);
-
-
 
             }
         });
@@ -107,7 +113,7 @@ public class HomeFragment extends Fragment {
                 TaskModel clickedTask = (TaskModel) adapterView.getItemAtPosition(i);
                 database.deleteOne(clickedTask);
                 Toast.makeText(getActivity(), "DELETED: " + clickedTask.toString(), Toast.LENGTH_SHORT).show();
-                taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll());
+                taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll(username));
                 selfCareListView.setAdapter(taskArrayAdapter);
             }
         });

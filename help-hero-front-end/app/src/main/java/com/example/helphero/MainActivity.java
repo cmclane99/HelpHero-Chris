@@ -20,28 +20,38 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SharedPreferences sharedPreferences;
+    private String username;
+    private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_resources, R.id.navigation_home, R.id.navigation_sos,
-                R.id.navigation_profile).build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
 
         String PREFERENCES = "MyPrefs";
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES,
-                Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username","");
+        password = sharedPreferences.getString("password","");
+
+        if(username.equals("")||password.equals(""))
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        else
+        {
+            setContentView(R.layout.activity_main);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+
+            BottomNavigationView navView = findViewById(R.id.nav_view);
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.navigation_resources, R.id.navigation_home, R.id.navigation_sos,
+                    R.id.navigation_profile).build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            NavigationUI.setupWithNavController(navView, navController);
+        }
+
     }
 
     @Override
@@ -58,11 +68,17 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
+            startActivity(new Intent(MainActivity.this, ProfileFragment.class));
             return true;
         } else if (id == R.id.action_logout) {
             //sends the user back to the sign in page when log out is selected
             //any saved variables will need to be cleared at this step however
             //there is none currently
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("username","");
+            editor.putString("password","");
+            editor.apply();
+
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
 
         }

@@ -3,24 +3,26 @@ from django.http import JsonResponse, HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response 
-from .serializers import UserSerializer, LoginSerializer, UpdateUserSerializer
+from .serializers import UserSerializer, LoginSerializer, UpdateUserSerializer, TaskSerializer
 from rest_framework import status
 from passlib.hash import pbkdf2_sha256
-from .models import User, UserLogin
+from .models import User, UserLogin, TaskList
 
 
 @api_view(['GET'])
 def apiOverview(request):
 
     api_urls = {
-        'User_list' : '/user-list/',
+        'User_list': '/user-list/',
         'Create_User': '/create-user/',
-        'Get_User' : '/user-detail/<str:pk>/',
+        'Get_User': '/user-detail/<str:pk>/',
         'User_login': '/login/',
-
-        'Edit_contacts': '/edit-contacts/<str:pk>/'
-        'Delete_User':'delete-user/<str:pk>',
-        "Change_Username":'change-username/<str:pk>',
+        'Edit_contacts': '/edit-contacts/<str:pk>/',
+        'Delete_User': 'delete-user/<str:pk>',
+        'Change_Username': 'change-username/<str:pk>',
+        'Create_Task': '/create-task/<str:pk>/',
+        'Get_Tasks': '/get-tasks/<str:pk>/',
+        'Delete_Task': '/delete-task/<str:pk_id>/'
     }
     return Response(api_urls)
 
@@ -91,6 +93,7 @@ def loginUser(request):
     loginSerializer.validated_data['password_verified'] = False
 
     return Response(loginSerializer.data) 
+
 @api_view(['PUT'])
 def updateContacts(request, pk):
     
@@ -108,9 +111,14 @@ def updateContacts(request, pk):
 
 @api_view(['POST'])
 def DeleteUser(request, pk):
+    # Find and delete user
      user = User.objects.get(username=pk)
      user.delete()
-     return Response("Item Successfully Deleted!")
+
+     # Find and delete all tasks associated with deleted user
+     tasks = TaskList.objects.filter(task_creator=pk)
+     tasks.delete()
+     return Response({'message: User successfully deleted'})
 
 @api_view(['POST'])
 def ChangeUsername(request, pk):
@@ -134,11 +142,64 @@ def ChangeUsername(request, pk):
             serializer2.validated_data['EmergencyContactNameThree'] = user.EmergencyContactNameThree
             serializer2.validated_data['EmergencyContactRelationThree'] = user.EmergencyContactRelationThree
             serializer2.validated_data['EmergencyContactPhoneThree'] = user.EmergencyContactPhoneThree
+
+            # Update task list with new username
+            TaskList.objects.filter(task_creator=pk).update(task_creator=new_username)
+
             serializer2.save()
             user.delete()
+
             return Response(serializer2.data, status=status.HTTP_201_CREATED)
 
      # Username already exists, so throw error message
     return Response(serializer2.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def createTask(request, pk):
+
+    taskSerializer = TaskSerializer(data=request.data)
+
+    if taskSerializer.is_valid():
+
+        try:
+            User.objects.get(username=pk)
+        except User.DoesNotExist:
+            return Response(taskSerializer.errors)
+
+        taskSerializer.save()
+        return Response(taskSerializer.data)
+
+    return Response(taskSerializer.errors)
+
+@api_view(['GET'])
+def listTasks(request, pk):
+
+    try:
+        User.objects.get(username=pk)
+    except User.DoesNotExist:
+        return Response({'message: User does not exist'})
+
+    tasks = TaskList.objects.filter(task_creator=pk)
+    serializer = TaskSerializer(tasks, many=True)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deleteTask(request, pk_id):
+
+    # pk_id is a unique task id 
+    try:
+        task = TaskList.objects.get(id=pk_id)
+    except TaskList.DoesNotExist:
+        return Response({'message: Task not found'})
+
+    task.delete()
+
+    return Response({'message: Task sucessfully deleted'})
+
+
+
+
+    
+
 
 

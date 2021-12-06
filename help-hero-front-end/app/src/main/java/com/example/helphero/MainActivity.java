@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
             //sends the user back to the sign in page when log out is selected
             //any saved variables will need to be cleared at this step however
             //there is none currently
-            //startActivity(new Intent(MainActivity.this, HomeFragment.class));
-            startActivity(new Intent(MainActivity.this, ProfileFragment.class));
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
 
         }
 

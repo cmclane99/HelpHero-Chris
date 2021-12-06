@@ -19,19 +19,20 @@
         app:layout_constraintEnd_toStartOf="@id/editCheckListButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <Button
         android:id="@+id/editCheckListButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#cfcdcc"
-        android:text="Edit Checklist"
+        android:text="Add Task"
         android:textColor="@color/black"
         android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/newTask"
         app:layout_constraintBottom_toTopOf="@id/selfCareLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/newTask"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/newTask"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView

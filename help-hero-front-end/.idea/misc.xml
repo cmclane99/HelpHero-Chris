@@ -4,9 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/activity_main.xml" value="0.2296875" />
         <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/fragment_home.xml" value="0.2296875" />
+        <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/fragment_resources.xml" value="0.264" />
+        <entry key="..\:/Users/Janelle/Documents/EMU/2021_Fall_Classes/COSC_481W/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/fragment_sos.xml" value="0.264" />
         <entry key="..\:/Users/Owner/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/root/capstone-thriving-5/help-hero-front-end/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/Owner/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/root/capstone-thriving-5/help-hero-front-end/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Owner/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/root/capstone-thriving-5/help-hero-front-end/app/src/main/res/layout/activity_home.xml" value="0.264" />

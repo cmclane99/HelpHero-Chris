@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("username","");
             editor.putString("password","");
             editor.apply();
+
             startActivity(new Intent(MainActivity.this, SignInActivity.class));
 
         }

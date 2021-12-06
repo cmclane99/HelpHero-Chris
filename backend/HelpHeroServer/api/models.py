@@ -41,4 +41,16 @@ class UserLogin (models.Model):
     def __str__(self):
         return self.username # name to be shown when called
 
-    
+class TaskList (models.Model):
+
+    id = models.IntegerField(primary_key=True)
+    description = models.CharField(max_length=250) # a text field
+    created = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # date field
+    task_creator = models.CharField(max_length=20)
+
+    class Meta:
+        ordering = ["-created"] # order tasks by date created 
+
+    def __str__(self):
+        return self.description # field to be shown when called
+

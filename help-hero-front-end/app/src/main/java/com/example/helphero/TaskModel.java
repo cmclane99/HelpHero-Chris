@@ -3,10 +3,12 @@ package com.example.helphero;
 public class TaskModel {
     private String taskTitle;
     private int id;
+    private String username;
 
     public TaskModel(int Id, String taskTitle){
         this.id = Id;
         this.taskTitle = taskTitle;
+        username = "";
     }
 
     public TaskModel(){
@@ -16,16 +18,14 @@ public class TaskModel {
         return id;
     }
 
-    public void setTaskId(int taskId) {
-        this.id = taskId;
+    public void setTaskCreator(String username) {
+
+        this.username = username;
     }
 
-    public TaskModel( String taskTitle){
-
-        this.taskTitle = taskTitle;
+    public String getTaskCreator() {
+        return username;
     }
-
-
 
     public String getTaskTitle() {
         return taskTitle;
@@ -35,11 +35,9 @@ public class TaskModel {
         this.taskTitle = taskTitle;
     }
 
-
     @Override
     public String toString() {
         return taskTitle;
-
 
     }
 }

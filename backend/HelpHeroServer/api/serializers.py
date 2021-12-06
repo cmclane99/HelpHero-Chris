@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, UserLogin
+from .models import User, UserLogin, TaskList
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,4 +26,7 @@ class LoginSerializer(serializers.ModelSerializer):
         model = UserLogin
         fields = ['username', 'password', 'password_verified']
 
-
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaskList
+        fields = '__all__'

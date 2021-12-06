@@ -14,31 +14,281 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <Button
+        android:id="@+id/saveFav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save Favorites" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/saveFav"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="43dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/ResourceList"
-                android:layout_width="352dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="56dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="96dp"
-                android:lineSpacingExtra="12sp"
-                android:text="@string/messageWithLink"
-                android:textSize="20sp" />
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv1"
+                    android:layout_toRightOf="@+id/check1"
+                    android:layout_centerVertical="true"
+                    android:elevation="10dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv2"
+                    android:layout_toRightOf="@+id/check2"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv3"
+                    android:layout_toRightOf="@+id/check3"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv4"
+                    android:layout_toRightOf="@+id/check4"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv5"
+                    android:layout_toRightOf="@+id/check5"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv6"
+                    android:layout_toRightOf="@+id/check6"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv7"
+                    android:layout_toRightOf="@+id/check7"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv8"
+                    android:layout_toRightOf="@+id/check8"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv9"
+                    android:layout_toRightOf="@+id/check9"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv10"
+                    android:layout_toRightOf="@+id/check10"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv11"
+                    android:layout_toRightOf="@+id/check11"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv12"
+                    android:layout_toRightOf="@+id/check12"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv13"
+                    android:layout_toRightOf="@+id/check13"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv14"
+                    android:layout_toRightOf="@+id/check14"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width= "match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/check15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv15"
+                    android:layout_toRightOf="@+id/check15"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>

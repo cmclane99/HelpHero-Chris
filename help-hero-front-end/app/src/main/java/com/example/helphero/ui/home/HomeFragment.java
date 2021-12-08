@@ -24,12 +24,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.helphero.Database;
 import com.example.helphero.MainActivity;
 import com.example.helphero.R;
+import com.example.helphero.SignInActivity;
 import com.example.helphero.TaskModel;
 
 import org.json.JSONException;
@@ -44,9 +48,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-
     private ListView selfCareListView;
-
+    private RequestQueue queue;
 
     int intCount = 0;
     int intCurrent;
@@ -62,12 +65,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
 
-
-
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-
 
         String PREFERENCES = "MyPrefs";
         SharedPreferences sharedPreferences = root.getContext().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
@@ -88,6 +87,8 @@ public class HomeFragment extends Fragment {
         taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll(username));
         selfCareListView.setAdapter(taskArrayAdapter);
 
+        queue = Volley.newRequestQueue(root.getContext());
+
         editCheckListButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -95,10 +96,14 @@ public class HomeFragment extends Fragment {
 
                 TaskModel taskModel = new TaskModel();
 
-                // Add task to database
                 taskModel.setTaskTitle(newTask.getText().toString());
                 taskModel.setTaskCreator(username);
+
+                // Add task to local database
                 database.addOne(taskModel);
+
+                //Add task to remote database
+                database.addToBackend(queue, taskModel);
 
                 // Display updated task list
                 taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll(username));
@@ -111,8 +116,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TaskModel clickedTask = (TaskModel) adapterView.getItemAtPosition(i);
+
+                // Delete selected task from remote database
+                database.deleteFromBackend(queue, clickedTask);
+
+                // Delete selected task from local database
                 database.deleteOne(clickedTask);
-                Toast.makeText(getActivity(), "DELETED: " + clickedTask.toString(), Toast.LENGTH_SHORT).show();
+
                 taskArrayAdapter = new ArrayAdapter<TaskModel>(getActivity(), android.R.layout.simple_list_item_1, database.getAll(username));
                 selfCareListView.setAdapter(taskArrayAdapter);
             }

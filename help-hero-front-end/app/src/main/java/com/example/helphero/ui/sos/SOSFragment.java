@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,11 @@ import com.example.helphero.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class SOSFragment extends Fragment {
 
@@ -161,10 +165,11 @@ public class SOSFragment extends Fragment {
         });
 
         TextView FavoriteResources = (TextView)root.findViewById(R.id.FavoriteResources);
-
         FavoriteResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FavoriteResources.setMovementMethod(new ScrollingMovementMethod());
+
                 //retreive sharedPreferences data
                 String PREFERENCES = "MyPrefs";
                 SharedPreferences sharedpreferences = root.getContext().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
@@ -174,7 +179,24 @@ public class SOSFragment extends Fragment {
                 String filename = username + "HHFavorites.txt";
 
                 try {
-                    FileInputStream File = new FileInputStream(filename);
+                    InputStream file = root.getContext().openFileInput(filename);
+                    BufferedReader bufferedReader = new BufferedReader(new BufferedReader(new InputStreamReader(file)));
+                    StringBuffer stringBuffer = new StringBuffer();
+
+                    String strData = "";
+
+                    if (file != null) {
+                        try {
+                            while ((strData = bufferedReader.readLine())!=null) {
+                                stringBuffer.append(strData + "\n");
+                            }
+
+                            FavoriteResources.setText(stringBuffer);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -184,5 +206,4 @@ public class SOSFragment extends Fragment {
 
         return root;
     }
-
 }

@@ -240,6 +240,7 @@ They are trained professional and can help
         android:id="@+id/FavoriteResources"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
         android:text="Visit your resources page to view saved favorites!"/>
 
 

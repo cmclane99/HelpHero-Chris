@@ -35,6 +35,9 @@ import com.example.helphero.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class SOSFragment extends Fragment {
 
     private SOSViewModel SOSViewModel;
@@ -154,6 +157,28 @@ public class SOSFragment extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+contactNumber3.getText().toString()));
                 startActivity(intent);
+            }
+        });
+
+        TextView FavoriteResources = (TextView)root.findViewById(R.id.FavoriteResources);
+
+        FavoriteResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //retreive sharedPreferences data
+                String PREFERENCES = "MyPrefs";
+                SharedPreferences sharedpreferences = root.getContext().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+
+                //define favorites filename
+                String username = sharedpreferences.getString("username", "user");
+                String filename = username + "HHFavorites.txt";
+
+                try {
+                    FileInputStream File = new FileInputStream(filename);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

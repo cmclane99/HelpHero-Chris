@@ -211,6 +211,11 @@
                         android:layout_margin="5dp"
                         android:text="Call" />
 
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        tools:ignore="MissingConstraints" />
+
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -235,6 +240,13 @@ They are trained professional and can help
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scroll_view"
         app:layout_constraintVertical_bias="0.898" />
+
+    <TextView
+        android:id="@+id/FavoriteResources"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Visit your resources page to view saved favorites!"/>
+
 
     <Button
         android:id="@+id/AutoDial911"

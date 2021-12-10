@@ -13,8 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:src="@drawable/ic_launcher_foreground"
-        android:contentDescription="Help Me App Logo" />
+        android:contentDescription="Help Me App Logo"
+        android:src="@drawable/profile_user" />
 
     <TextView
         android:id="@+id/textViewUsername"
@@ -26,6 +26,7 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="43dp"
         android:layout_marginEnd="35dp"
+        android:textColor="@color/black"
         android:text="Username: " />
 
     <EditText
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
         android:layout_alignStart="@+id/username"
+        android:textColor="@color/black"
         android:layout_alignEnd="@+id/textViewUsername"
         android:layout_marginTop="30dp"
         android:text="Password: " />
@@ -82,8 +84,9 @@
         android:layout_alignStart="@+id/textViewUsername"
         android:layout_alignEnd="@+id/textViewUsername"
         android:layout_marginTop="0dp"
-        android:textAlignment="center"
-        android:text="OR" />
+        android:textColor="@color/black"
+        android:text="OR"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/buttonSignUp"

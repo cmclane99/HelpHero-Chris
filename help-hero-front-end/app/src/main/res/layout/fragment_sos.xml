@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:textColor="@color/black"
         android:text="Emergency Contacts:"
         android:textAlignment="textStart"
         android:textSize="20sp"
@@ -57,7 +58,11 @@
                         android:id="@+id/card_label_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/black"
                         android:text="Emergency Contact"
                         android:textStyle="bold" />
 
@@ -67,6 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/card_label_1"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <TextView
@@ -75,6 +81,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_name_one"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <TextView
@@ -83,6 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_relation_one"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <Button
@@ -116,7 +124,11 @@
                         android:id="@+id/card_label_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/black"
                         android:text="Emergency Contact"
                         android:textStyle="bold" />
 
@@ -126,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/card_label_2"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <TextView
@@ -134,6 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_name_two"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <TextView
@@ -142,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_relation_two"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <Button
@@ -175,7 +190,11 @@
                         android:id="@+id/card_label_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/black"
                         android:text="Emergency Contact"
                         android:textStyle="bold" />
 
@@ -193,6 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_name_three"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <TextView
@@ -201,6 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_relation_three"
                         android:layout_margin="5dp"
+                        android:textColor="@color/black"
                         android:text="" />
 
                     <Button
@@ -223,12 +244,13 @@
         android:layout_height="223dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="If you are going to harm yourself, have harmed yourself,
-harm others, or is an emergency  you NEED TO STOP AND CALL 911
-They are trained professional and can help
+        android:textColor="@color/black"
+        android:text="If you are going to harm yourself, have already harmed yourself,
+harmed others, or this is an emergency, then you NEED TO STOP AND CALL 911!
+They are trained professionals and can help you.
 "
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -241,6 +263,8 @@ They are trained professional and can help
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         android:text="Visit your resources page to view saved favorites!"/>
 
 

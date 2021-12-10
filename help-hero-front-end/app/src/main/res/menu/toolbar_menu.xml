@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.helphero.MainActivity">
     <item
-        android:id="@+id/action_profile"
-        android:orderInCategory="100"
-        android:title="Profile"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:title="Logout"

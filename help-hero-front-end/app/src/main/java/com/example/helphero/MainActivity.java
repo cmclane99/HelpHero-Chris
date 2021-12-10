@@ -67,10 +67,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_profile) {
-            startActivity(new Intent(MainActivity.this, ProfileFragment.class));
-            return true;
-        } else if (id == R.id.action_logout) {
+        if (id == R.id.action_logout) {
             //sends the user back to the sign in page when log out is selected
             //any saved variables will need to be cleared at this step however
             //there is none currently

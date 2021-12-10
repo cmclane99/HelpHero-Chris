@@ -76,8 +76,12 @@
                         android:id="@+id/card_label_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:text="Emergency Contact #1"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                     <EditText
@@ -88,6 +92,7 @@
                         android:layout_margin="5dp"
                         android:background="@null"
                         android:enabled="false"
+                        android:textColor="@color/black"
                         android:hint="Contact Name"
                         android:text="" />
 
@@ -100,6 +105,7 @@
                         android:layout_margin="5dp"
                         android:background="@null"
                         android:enabled="false"
+                        android:textColor="@color/black"
                         android:hint="Contact Relationship"
                         android:text="" />
 
@@ -112,6 +118,7 @@
                         android:layout_margin="5dp"
                         android:background="@null"
                         android:enabled="false"
+                        android:textColor="@color/black"
                         android:hint="Contact Number"
                         android:text="" />
 
@@ -174,7 +181,11 @@
                         android:id="@+id/card_label_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/black"
                         android:text="Emergency Contact #2"
                         android:textStyle="bold" />
 
@@ -185,6 +196,7 @@
                         android:layout_below="@+id/card_label_2"
                         android:layout_margin="5dp"
                         android:background="@null"
+                        android:textColor="@color/black"
                         android:hint="Contact Name"
                         android:enabled="false"
                         android:text="" />
@@ -197,6 +209,7 @@
                         android:layout_below="@+id/contact_name_two"
                         android:layout_margin="5dp"
                         android:background="@null"
+                        android:textColor="@color/black"
                         android:hint="Contact Relationship"
                         android:enabled="false"
                         android:text="" />
@@ -209,6 +222,7 @@
                         android:layout_below="@+id/contact_relation_two"
                         android:layout_margin="5dp"
                         android:background="@null"
+                        android:textColor="@color/black"
                         android:hint="Contact Number"
                         android:enabled="false"
                         android:text="" />
@@ -271,7 +285,11 @@
                         android:id="@+id/card_label_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/black"
                         android:text="Emergency Contact #3"
                         android:textStyle="bold" />
 
@@ -280,10 +298,14 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/card_label_3"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@null"
-                        android:hint="Contact Name"
                         android:enabled="false"
+                        android:textColor="@color/black"
+                        android:hint="Contact Name"
                         android:text="" />
 
                     <EditText
@@ -291,10 +313,14 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_name_three"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@null"
-                        android:hint="Contact Relationship"
                         android:enabled="false"
+                        android:textColor="@color/black"
+                        android:hint="Contact Relationship"
                         android:text="" />
 
                     <EditText
@@ -302,10 +328,14 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/contact_relation_three"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@null"
-                        android:hint="Contact Number"
                         android:enabled="false"
+                        android:textColor="@color/black"
+                        android:hint="Contact Number"
                         android:text="" />
 
                     <TextView

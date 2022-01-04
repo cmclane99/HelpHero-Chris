@@ -1,6 +1,7 @@
 # The Thriving 5
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
+This is a cloned repository of my [COSC481W Senior Capstone Project](https://github.com/COSC481W-2021Fall/capstone-thriving-5), 'Help Hero'. Collaborated on a team of five members to design and develop an Android app that provides support and assistance to users suffering from mental health issues.
 
 ## Project summary
 
@@ -13,7 +14,7 @@ There would also be a feature showing nearby events supporting suicide preventio
 
 ## Bio's
 
-Brayden Flaig: I'm a senior at EMU studying computer science and SAG. I am 21 years old and plan on graduating hopefully in 2023.I have been coding since I was 18 year old in high school
+Brayden Flaig: I'm a senior at EMU studying computer science and SAG. I am 21 years old and plan on graduating hopefully in 2023.I have been coding since I was 18 year old in high school.
 
 Fentry Martin: I’m a Second Bachelor’s student at EMU majoring in Computer Science. My first degree was a Bachelor’s in Art. I’ve been coding for about 5 years and I plan on graduating at the end of the Fall 2021 semester.
 
@@ -28,10 +29,10 @@ Christopher Mclane: I am an undergraduate student at Eastern Michigan Universiy 
 ## Commit Message Guidlines
 
 - When commiting use the "git commit -m "Subject" -m "Description..."
-- subject beign a few word despirtion like the subject of an email
+- subject beign a few word despirtion like the subject of an email.
 - Description should be a breif sentence or two descirbing what the commit did or changed.
-- If the commit message isnt enoough information contact the person who made the commit directly for more information
-- Only commit if you know it's working
+- If the commit message isnt enoough information contact the person who made the commit directly for more information.
+- Only commit if you know it's working.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -40,12 +41,12 @@ Christopher Mclane: I am an undergraduate student at Eastern Michigan Universiy 
 - Before you merge with the main have at least one other group member review it to make sure it works.
 - Make sure to label with appropirate tags.
 - In the comments have a breif description of what documents are being merged to main and any changes that will be made.
-- If there is a conflict when merging, it needs to be done with atleast most of the group present i.e. weekly group meets or an specifically arranged time
+- If there is a conflict when merging, it needs to be done with atleast most of the group present i.e. weekly group meets or an specifically arranged time.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Code Review Guidlines
 
-- link it to an issue
-- Have at least one other person in the group look over code and bug or possible improvments before any commits or offical changes are made
-- This will need to be done more often than our twice aweek meeting so you'll need ask someone to meet with you for code review on your own time
+- Link it to an issue.
+- Have at least one other person in the group look over code and bug or possible improvments before any commits or offical changes are made.
+- This will need to be done more often than our twice aweek meeting so you'll need ask someone to meet with you for code review on your own time.
